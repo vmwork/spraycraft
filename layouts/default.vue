@@ -8,11 +8,11 @@
 </template>
 
 <script lang="ts">
+import { useAuthStore } from '~/store/auth.store';
+import { account } from '~/plugins/utils/appwrite';
 export default {
   layout: 'default',
 };
-import { useAuthStore } from '~/store/auth.store';
-import { account } from '~/plugins/utils/appwrite';
 
 const router = useRouter();
 
