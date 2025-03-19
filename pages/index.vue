@@ -15,10 +15,16 @@
   </div>
 </template>
 <script setup lang="ts">
+import { useAuthStore } from '~/store/auth.store';
+
 definePageMeta({
   title: 'Orders',
 });
+const authStore = useAuthStore();
 
+const isUserAuth = computed(() => {
+  return authStore.get;
+});
 const isLogin = ref(false);
 const isAuth = ref(false);
 const setIsLogin = (status: boolean) => {

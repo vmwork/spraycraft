@@ -35,8 +35,10 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/image', '@vueuse/nuxt', '@nuxtjs/i18n'],
-
+  modules: ['@nuxt/image', '@vueuse/nuxt', '@nuxtjs/i18n', '@pinia/nuxt'],
+  pinia: {
+    storesDirs: ['~/store/**'],
+  },
   i18n: {
     vueI18n: './i18n.config.ts',
 

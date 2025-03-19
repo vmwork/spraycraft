@@ -1,9 +1,15 @@
 <template>
   <div class="header w-full px-3 py-2 flex">
+    <div v-if="isLoading" class="absolute flex justify-center w-full">
+      <div class="w-[200px]"><Progress /></div>
+    </div>
+
     <div class="header-left-block">
       <div
         class="header-avatar w-[80px] h-[36px] rounded-3xl flex justify-center items-center"
-      ></div>
+      >
+        <button v-if="isAuth" @click="logOut">Logout</button>
+      </div>
     </div>
     <div class="header-right-block w-full flex justify-end items-center gap-1">
       <div class="relative">
@@ -60,6 +66,15 @@
   </div>
 </template>
 <script setup lang="ts">
+import { account } from '~/plugins/utils/appwrite';
+import { useAuthStore, useIsLoadingStore } from '~/store/auth.store';
+
+const looadingStore = useIsLoadingStore();
+const authStore = useAuthStore();
+
+const isLoading = computed(() => looadingStore.isLoading);
+const isAuth = computed(() => authStore.isAuth);
+
 const isShowlang = ref(false);
 const isShowMoney = ref(false);
 const lang = ref('EN');
@@ -106,6 +121,12 @@ const setLang = (id: number) => {
   );
   lang.value = langItem?.lang || '';
   isShowlang.value = false;
+};
+const logOut = async () => {
+  looadingStore.set(true);
+  await account.deleteSession('current');
+  authStore.clear();
+  looadingStore.set(false);
 };
 </script>
 
