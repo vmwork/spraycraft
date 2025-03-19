@@ -1,11 +1,15 @@
 <template>
   <div class="mt-3 px-3 py-4">
+    <button class="flex items-center gap-2" @click="$emit('closeGoods')">
+      <NuxtImg src="/svg/close.svg" width="24" />
+      <sapn class="text-white font-semibold">#{{ order.transaction_id }}</sapn>
+    </button>
     <div>
-      <UiOrderCard />
+      <UiOrderCard :item="order" />
     </div>
     <div class="text-white flex justify-between items-center mt-2">
       <div>Your Goods:</div>
-      <div class="font-semibold">1 - 279,99$</div>
+      <div class="font-semibold">1 - {{ order.goods }}$</div>
     </div>
     <div
       class="order-card_goods mt-2 w-full py-[19px] flex flex-col items-center justify-center"
@@ -25,9 +29,19 @@
   </div>
 </template>
 <script setup lang="ts">
-// const props = defineProps<{
-
-// }>();
+const props = defineProps<{
+  order: {
+    id: number;
+    transaction_id: string;
+    date: string;
+    status: string;
+    game_name: string;
+    game_id: number;
+    amount: string;
+    goods: string;
+  };
+}>();
+const emit = defineEmits(['closeGoods']);
 </script>
 <style lang="scss" scoped>
 .order-card_goods {
