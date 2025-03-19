@@ -41,7 +41,6 @@ const props = defineProps<{
     goods: string;
   };
 }>();
-const emit = defineEmits(['closeGoods']);
 </script>
 <style lang="scss" scoped>
 .order-card_goods {

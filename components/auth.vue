@@ -64,7 +64,7 @@
               class="relative inline-flex h-5 w-6 items-center border rounded-[4px]"
             >
               <NuxtImg
-              v-if="enabled"
+                v-if="enabled"
                 class="rotate-[270deg]"
                 src="/svg/arrow.svg"
                 width="24"

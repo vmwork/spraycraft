@@ -6,7 +6,7 @@
         <UiButton :button-name="'Login'" @click="setIsLogin(true)" />
       </div>
       <NuxtLink
-        class="link-to-orders flex flex-col justify-center hover:scale-101 items-center w-full transition delay-150 duration-300 ease-in-out hover:-translate-y-1"
+        class="link-to-orders font-semibold flex flex-col justify-center hover:scale-101 items-center w-full transition delay-150 duration-300 ease-in-out hover:-translate-y-1"
         to="/orders"
         >Orders</NuxtLink
       >
@@ -20,7 +20,7 @@ definePageMeta({
 });
 
 const isLogin = ref(false);
-const isAuth = ref(true);
+const isAuth = ref(false);
 const setIsLogin = (status: boolean) => {
   isLogin.value = status;
   isAuth.value = true;
