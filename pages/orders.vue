@@ -45,7 +45,7 @@ const setIsOrder = (item: IorderItem) => {
   isOpenFullCart.value = true;
 };
 
-const orders = ref([]);
+const orders = ref();
 const getOrders = async () => {
   try {
     const responce = await DB.listDocuments(DB_ID, COLLECTION_ORDERS);

@@ -1,6 +1,6 @@
 <template>
   <div class="relative overflow-hidden">
-    <Header />
+    <!-- <Header /> -->
     <main class="main">
       <slot />
     </main>
@@ -8,6 +8,9 @@
 </template>
 
 <script lang="ts">
+export default {
+  layout: 'default',
+};
 import { useAuthStore } from '~/store/auth.store';
 import { account } from '~/plugins/utils/appwrite';
 
@@ -26,7 +29,6 @@ const checkLogin = async () => {
         status: true,
       });
     }
-    console.log(user);
   } catch (e) {
     console.log(e);
   }
