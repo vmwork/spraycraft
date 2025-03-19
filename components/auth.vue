@@ -5,7 +5,7 @@
     <div class="fixed inset-0 flex w-screen items-center justify-center p-4">
       <DialogPanel class="auth-dialog p-4 w-full max-w-sm rounded-2xl">
         <div class="flex justify-between items-center relative">
-          <div v-if="!isLoading" class="absolute flex justify-center w-full">
+          <div v-if="isLoading" class="absolute flex justify-center w-full">
             <div class="w-[200px]"><Progress /></div>
           </div>
           <div
@@ -33,36 +33,42 @@
         </div>
         <div v-if="isLogin" class="login-form mt-6">
           <input
-            v-model="email"
+            v-model="formDataLogin.email"
             class="rounded-2xl px-3 py-4"
             type="text"
             placeholder="Email"
           />
+          <span class="red"> {{ formErrors.email }}</span>
+
           <input
-            v-model="password"
+            v-model="formDataLogin.password"
             class="rounded-2xl px-3 py-4 mt-2"
             type="password"
             placeholder="Password"
           />
+          <span class="red"> {{ formErrors.password }}</span>
+
           <UiButton :button-name="'Login'" class="mt-4" @click="login" />
         </div>
 
         <div v-if="!isLogin" class="login-form mt-6">
           <input
-            v-model="email"
+            v-model="formDataLogin.email"
             class="rounded-2xl px-3 py-4"
             type="text"
             placeholder="Email"
           />
+          <span class="red"> {{ formErrors.email }}</span>
 
           <input
-            v-model="password"
+            v-model="formDataLogin.password"
             class="rounded-2xl px-3 py-4 mt-2"
             type="password"
             placeholder="Password"
           />
+          <span class="red"> {{ formErrors.email }}</span>
           <input
-            v-model="confirmPassword"
+            v-model="formDataLogin.confirmPassword"
             class="rounded-2xl px-3 py-4 mt-2"
             type="password"
             placeholder="Confirm Password"
@@ -101,9 +107,10 @@
 
 <script setup lang="ts">
 import { Dialog, Switch } from '@headlessui/vue';
+import { z } from 'zod';
+import { v4 as uuid } from 'uuid';
 import { account } from '~/plugins/utils/appwrite';
 import { useAuthStore, useIsLoadingStore } from '~/store/auth.store';
-import { v4 as uuid } from 'uuid';
 
 const props = defineProps<{
   isLogin: boolean;
@@ -111,8 +118,12 @@ const props = defineProps<{
 
 const emit = defineEmits(['closeAuth']);
 
-const isLoading = useIsLoadingStore();
+const loadingStore = useIsLoadingStore();
 const authStore = useAuthStore();
+
+const isLoading = computed(() => loadingStore.isLoading);
+const isAuth = computed(() => authStore.isAuth);
+
 const router = useRouter();
 
 const isLogin = ref(props.isLogin);
@@ -128,31 +139,78 @@ const changeTab = (tab: string) => {
     isLogin.value = false;
   }
 };
-const email = ref('');
-const password = ref('');
+const formDataLogin = reactive({
+  email: '',
+  password: '',
+  confirmPassword: '',
+});
+const formErrors = reactive({
+  email: '',
+  password: '',
+});
+const errorEmail = ref('');
+const errorPassword = ref('');
 const confirmPassword = ref('');
+const errorConfirmPassword = ref('');
+
+const formShemaLogin = z.object({
+  email: z.string().email('Email incorect'),
+  password: z.string().min(5, { message: 'Password requred' }),
+});
+
+const checkValues = () => {
+  const validationResult = formShemaLogin.safeParse(formDataLogin);
+  formErrors.email = '';
+  formErrors.password = '';
+  if (!validationResult.success) {
+    const errors = validationResult.error.format();
+    formErrors.email = errors?.email?._errors[0] || '';
+    formErrors.password = errors?.password?._errors[0] || '';
+  }
+  return validationResult.success;
+};
+
 const login = async () => {
-  isLoading.set(true);
-  await account.createEmailPasswordSession(email.value, password.value);
-  const responce = await account.get();
-  if (responce) {
-    authStore.set({
-      email: responce.email,
-      name: responce.name,
-      status: true,
-    });
-    email.value = '';
-    password.value = '';
-    router.push('/');
-    isLoading.set(false);
-  } else {
-    isLoading.set(false);
+  console.log(checkValues());
+  if (!checkValues()) {
+    return;
+  }
+  loadingStore.set(true);
+  try {
+    await account.createEmailPasswordSession(
+      formDataLogin.email,
+      formDataLogin.password
+    );
+    const responce = await account.get();
+    if (responce) {
+      authStore.set({
+        email: responce.email,
+        name: responce.name,
+        status: true,
+      });
+      formDataLogin.email = '';
+      formDataLogin.password = '';
+      router.push('/');
+      loadingStore.set(false);
+      emit('closeAuth');
+    }
+  } catch (e) {
+    console.log(e);
+  } finally {
+    loadingStore.set(false);
   }
 };
 
 const register = async () => {
-  isLoading.set(true);
-  await account.create(uuid(), email.value, password.value);
+  if (!checkValues()) {
+    return;
+  }
+  loadingStore.set(true);
+  await account.create(
+    uuid(),
+    (formDataLogin.email = ''),
+    (formDataLogin.password = '')
+  );
   await login();
 };
 </script>
@@ -218,5 +276,10 @@ const register = async () => {
     line-height: 100%;
     letter-spacing: 1px;
   }
+}
+.red {
+  color: rgb(230, 93, 93);
+  font-size: 12px;
+  margin-left: 10px;
 }
 </style>

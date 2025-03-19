@@ -69,10 +69,10 @@
 import { account } from '~/plugins/utils/appwrite';
 import { useAuthStore, useIsLoadingStore } from '~/store/auth.store';
 
-const looadingStore = useIsLoadingStore();
+const loadingStore = useIsLoadingStore();
 const authStore = useAuthStore();
 
-const isLoading = computed(() => looadingStore.isLoading);
+const isLoading = computed(() => loadingStore.isLoading);
 const isAuth = computed(() => authStore.isAuth);
 
 const isShowlang = ref(false);
@@ -123,10 +123,10 @@ const setLang = (id: number) => {
   isShowlang.value = false;
 };
 const logOut = async () => {
-  looadingStore.set(true);
+  loadingStore.set(true);
   await account.deleteSession('current');
   authStore.clear();
-  looadingStore.set(false);
+  loadingStore.set(false);
 };
 </script>
 

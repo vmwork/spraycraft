@@ -23,6 +23,9 @@
   </div>
 </template>
 <script setup lang="ts">
+import { Databases } from 'appwrite';
+import { DB } from '~/plugins/utils/appwrite';
+import { DB_ID, COLLECTION_ORDERS } from '~/app.constants';
 definePageMeta({
   title: 'Ortders',
 });
@@ -41,58 +44,18 @@ const setIsOrder = (item: IorderItem) => {
   order.value = item;
   isOpenFullCart.value = true;
 };
-const orders = ref([
-  {
-    id: 1,
-    transaction_id: '15326',
-    date: '12.06.2024',
-    status: 'Success',
-    game_name: 'Ernardd',
-    game_id: 1523523623,
-    amount: '13.26',
-    goods: '279,99',
-  },
-  {
-    id: 2,
-    transaction_id: '15325',
-    date: '12.06.2024',
-    status: 'Success',
-    game_name: 'Evetdhre',
-    game_id: 1523523623,
-    amount: '15343,26',
-    goods: '279,99',
-  },
-  {
-    id: 3,
-    transaction_id: '12125',
-    date: '12.06.2024',
-    status: 'Success',
-    game_name: 'Svnyum',
-    game_id: 1523523623,
-    amount: '1763,26',
-    goods: '279,99',
-  },
-  {
-    id: 4,
-    transaction_id: '153425',
-    date: '12.06.2024',
-    status: 'Success',
-    game_name: 'Tnuykug',
-    game_id: 1523523623,
-    amount: '153543,26',
-    goods: '279,99',
-  },
-  {
-    id: 5,
-    transaction_id: '153215',
-    date: '12.06.2024',
-    status: 'Success',
-    game_name: 'Ernardd',
-    game_id: 1523523623,
-    amount: '135,0',
-    goods: '279,99',
-  },
-]);
+
+const orders = ref([]);
+const getOrders = async () => {
+  try {
+    const responce = await DB.listDocuments(DB_ID, COLLECTION_ORDERS);
+    orders.value = responce.documents;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+getOrders();
 </script>
 <style lang="scss" scoped>
 .link-to-orders {
