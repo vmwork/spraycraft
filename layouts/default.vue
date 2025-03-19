@@ -1,6 +1,6 @@
 <template>
   <div class="relative overflow-hidden">
-    <!-- <Header /> -->
+    <Header />
     <main class="main">
       <slot />
     </main>
