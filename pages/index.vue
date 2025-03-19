@@ -19,9 +19,9 @@ definePageMeta({
   title: 'Orders',
 });
 
-const isLogin = ref(true);
-const isAuth = ref(false);
-const setIsLogin = (status) => {
+const isLogin = ref(false);
+const isAuth = ref(true);
+const setIsLogin = (status: boolean) => {
   isLogin.value = status;
   isAuth.value = true;
 };

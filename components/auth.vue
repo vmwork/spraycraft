@@ -57,8 +57,24 @@
             type="password"
             placeholder="Confirm Password"
           />
-          <div class="use-social text-white">Добавить check-box</div>
-          <UiButton :button-name="'Registration'" class="mt-4" />
+          <div class="use-social flex items-center mt-6 ml-1">
+            <Switch
+              v-model="enabled"
+              :class="enabled ? 'check-box-img' : 'bg-transparent'"
+              class="relative inline-flex h-5 w-6 items-center border rounded-[4px]"
+            >
+              <NuxtImg
+              v-if="enabled"
+                class="rotate-[270deg]"
+                src="/svg/arrow.svg"
+                width="24"
+              />
+            </Switch>
+            <span class="check-box-title flex w-full ml-2"
+              >Use social networks</span
+            >
+          </div>
+          <UiButton :button-name="'Registration'" class="mt-6" />
         </div>
         <UiSocial />
         <div v-if="isLogin" class="fogot-pass flex justify-center mt-6">
@@ -70,20 +86,20 @@
 </template>
 
 <script setup lang="ts">
-import { Dialog } from '@headlessui/vue';
+import { Dialog, Switch } from '@headlessui/vue';
 const props = defineProps<{
-  isLogin: 'ac';
+  isLogin: boolean;
 }>();
 
 const emit = defineEmits(['closeAuth']);
 
 const isLogin = ref(props.isLogin);
 const isOpen = ref(true);
-
-function setIsOpen(value) {
+const enabled = ref(false);
+function setIsOpen(value: boolean) {
   isOpen.value = value;
 }
-const changeTab = (tab) => {
+const changeTab = (tab: string) => {
   if (tab === 'login') {
     isLogin.value = true;
   } else {
@@ -144,6 +160,14 @@ const changeTab = (tab) => {
     line-height: 100%;
     letter-spacing: 3%;
     color: $text-gray-light;
+  }
+
+  .check-box-title {
+    color: $text-gray-light;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 1px;
   }
 }
 </style>
