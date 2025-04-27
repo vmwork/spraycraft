@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap:https://spray-craft.com.ua/sitemap.xml
