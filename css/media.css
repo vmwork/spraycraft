@@ -753,7 +753,17 @@
   top: -30px;
   right: -10px;
 }
-
+.product-card-buttons {
+  border: none;
+  background-color: #99c455;
+  padding: 5px;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.product-card-buttons:hover {
+  color: #ffffff;
+}
 .card-wrapper {
   position: fixed;
   right: 50px;
@@ -799,7 +809,7 @@
   margin-right: 50px;
 }
 .btn-finaly {
-  width: 98%;
+  width: 100%;
   margin: 10px;
   background-color: transparent;
   border: 2px solid #99c455;
@@ -820,7 +830,7 @@
   width: 100%;
 }
 .user-form input {
-  width: 98%;
+  width: 100%;
   padding: 10px;
   margin: 5px;
   border: 1px solid #99c455;
