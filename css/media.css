@@ -757,3 +757,21 @@
 .product-card-button:hover {
   background-color: #7fae4a;
 }
+.card-wrapper,
+.catalog-wrapper {
+  position: fixed;
+  right: 50px;
+  top: 150px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #99c455;
+  z-index: 1000;
+  cursor: pointer;
+}
+.catalog-wrapper {
+  top: 250px;
+}
