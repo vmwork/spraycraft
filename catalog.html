@@ -1,6 +1,51 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WWK8TCCR");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-JS0JJW1SY4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-JS0JJW1SY4");
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-16511961963"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "AW-16511961963");
+    </script>
+
     <meta charset="utf-8" />
     <title>
       Обробка полів дронами, внесення ЗЗР і трихограми, десикація дронами
@@ -31,6 +76,50 @@
       ></iframe
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <div class="modal">
+      <span class="close-modal close-modal-times">&times;</span>
+      <div class="modal-block modal-form">
+        <div class="contacts-block">
+          <h2><span>БАЖАЄТЕ ОТРИМАТИ</span> ШВИДКИЙ РОЗРАХУНОК ВАРТОСТІ?</h2>
+          <p>
+            Заповніть Ваші контактні дані та наш консультант зв’яжеться з Вами
+          </p>
+
+          <form
+            class="form telegram-form"
+            action="javascript:void(null);"
+            method="post"
+            id="form"
+            onsubmit="sendForm('form')"
+          >
+            <input
+              class="input"
+              type="text"
+              name="name"
+              placeholder="Ваше Ім’я"
+              required
+            />
+            <input
+              class="input"
+              type="text"
+              name="phone"
+              placeholder="Ваш номер телефону"
+              required
+            />
+            <input type="hidden" name="subject" value="Новая заявка" />
+
+            <button class="btn-black">Відправити</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal-block modal-thanks">
+        <img src="img/logo.png" alt="Обробка агродроном" />
+        <h4>Дякуємо за заявку</h4>
+        <p>Ми з вами зв'яжемося найближчим часом</p>
+      </div>
+    </div>
 
     <header class="header">
       <div class="container">
@@ -98,69 +187,71 @@
       </div>
     </header>
 
-    <main></main>
-    <section class="product-card-wrapper">
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-      <div id="card" class="product-card">
-        <img src="/img/copter-photo.png" alt="copter" width="200" />
-        <p>Високий врожай - наша гарантія!</p>
-        <button class="product-card-button">Додати до кошика</button>
-      </div>
-    </section>
+    <main>
+      <section class="product-card-wrapper">
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+        <div id="card" class="product-card">
+          <img src="/img/copter-photo.png" alt="copter" width="200" />
+          <p>Високий врожай - наша гарантія!</p>
+          <button class="product-card-button">Додати до кошика</button>
+        </div>
+      </section>
+    </main>
+
     <footer class="footer" id="contacts">
       <div class="container">
         <div class="footer-box">
@@ -233,6 +324,16 @@
       </div>
     </footer>
 
+    <a href="#" id="scroll-top" class="scroll-top"></a>
+
+    <!-- assets:js-->
+    <script src="assets/jquery/jquery.min.js"></script>
+
+    <script src="assets/swiper/dist/js/swiper.js"></script>
+    <script src="assets/animate/waypoints.min.js"></script>
+    <script src="assets/animate/animate-css.js"></script>
+
+    <!-- build:js js/main.js -->
     <script src="js/JavaScript.js"></script>
   </body>
 </html>
