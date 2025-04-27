@@ -775,3 +775,56 @@
 .catalog-wrapper {
   top: 250px;
 }
+.card {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1420px;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.card-items,
+.card-total {
+  width: 375px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #99c455;
+  flex-wrap: wrap;
+  padding: 10px;
+  border-radius: 4px;
+}
+.products-card {
+  padding: 10px;
+  border-bottom: 1px solid #99c455;
+}
+
+.btn-finaly {
+  width: 100%;
+  margin: 10px;
+  background-color: transparent;
+  border: 2px solid #99c455;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 5px;
+}
+.btn-finaly:hover {
+  background-color: #99c455;
+}
+
+.user-form {
+  display: flex;
+}
+.user-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #99c455;
+  border-radius: 4px;
+}
+.user-form input:focus-visible {
+  outline: none;
+  border-color: #99c455;
+}
