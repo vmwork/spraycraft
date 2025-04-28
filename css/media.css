@@ -742,6 +742,8 @@
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 15px;
 }
 
@@ -884,4 +886,7 @@
   margin: 5px;
   border: 1px solid #99c455;
   border-radius: 4px;
+}
+.product-card-wrapper {
+  min-height: 500px;
 }
