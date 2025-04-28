@@ -780,7 +780,19 @@
   z-index: 1000;
   cursor: pointer;
 }
-
+.card-counter {
+  position: absolute;
+  top: -5px;
+  right: -2px;
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .card {
   margin: 0 auto;
   display: flex;
@@ -889,4 +901,14 @@
 }
 .product-card-wrapper {
   min-height: 500px;
+}
+.product-card-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+.product-card-price p {
+  font-weight: 700;
 }
