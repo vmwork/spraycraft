@@ -333,123 +333,96 @@
     <!-- <script src="js/appwrite.js"></script> -->
     <script src="js/cartState.js"></script>
     <script> 
+
+      
       let productsCard = document.getElementById("card-items");
-      let buttons = document.querySelectorAll(".product-card-button");
-      let plusButtons = document.querySelectorAll(".plus-button");
-      let minusButtons = document.querySelectorAll(".minus-button");
       let cart = []
       const getCart = () => {
         cart = JSON.parse(localStorage.getItem("cart")) || [];
       }
-   getCart()
-   const reactiveUpdateDom = () => {
+   getCart()     
+      
 
-     productsCard = document.getElementById("card-items");
-     while (productsCard.firstChild) {
-      productsCard.removeChild(productsCard.firstChild);
-    }
+      for (let i = 0; i < cart.length; i++) {
+        let div = document.createElement("div");
+        const reactiveUpdateDom = () =>{
+          console.log(cart[0].product_count_to_buy)
+                  div.className = "products-card";
+        div.innerHTML = `
+        <div class="">
+    <img
+      class="product-img"
+      src="${cart[i].url}"
+      alt="copter"
+      width="100"
+      height="auto"
+    />
+  </div>
+  <div class="">
+    <p>${cart[i].product_name}!</p>
+    <div class="product-counter">
+      <button class="plus-button" name="${cart[i].$id}">+</button>
+      <input type="text" value="${cart[i].product_count_to_buy}" />
+      <button class="minus-button" name="${cart[i].$id}">-</button>
+    </div>
+  </div>
+  <button class="product-card-button" >
+    <img name="${cart[i].$id}" src="/img/back.png" alt="" width="25" />
+  </button>  </div>`
+  productsCard.append(div);
+        }
 
-     let div = document.createElement("div");
-   for (let i = 0; i < cart.length; i++) {
-    
-    div = document.createElement("div");
-              div.className = "";
-    div.innerHTML = `
-    <div class="products-card">
-    <div class="products-card-wrapper">
-<img
-  class="product-img"
-  src="${cart[i].url}"
-  alt="copter"
-  width="100"
-  height="auto"
-/>
-
-
-<div class="title-card">
-<p>${cart[i].product_name}!</p>
-<div class="product-counter">
-  <button class="plus-button" name="${cart[i].$id}">+</button>
-  <input type="text" value="${cart[i].product_count_to_buy}" />
-  <button class="minus-button" name="${cart[i].$id}">-</button>
-</div>
-
-</div>
-<button class="product-card-button" >
-<img name="${cart[i].$id}" src="/img/back.png" alt="" width="25" />
-</button>  
-
-</div>
-<div class="product-price">
-  <p>Ціна:<p> ${cart[i].price}</p></p>
-</div>
-</div>
-`
-productsCard.append(div);
-
-
-if(i === cart.length - 1){
-
-  buttons = document.querySelectorAll(".product-card-button");
-  plusButtons = document.querySelectorAll(".plus-button");
-  minusButtons = document.querySelectorAll(".minus-button");
-  const changeCounter = (id, method) =>{
-    cart.forEach(cart => {
-      if(cart.$id === id){
-        if(method === 'plus'){
-          console.log("plus")
-          cart.product_count_to_buy += 1
-        }else{
-          console.log("minus")
-          if(cart.product_count_to_buy === 1){
-            cart.product_count_to_buy = 1
-          } 
-          else{
-            cart.product_count_to_buy -= 1
-          }
+        reactiveUpdateDom()
+  if(i === cart.length - 1){
+    const buttons = document.querySelectorAll(".product-card-button");
+    const plusButtons = document.querySelectorAll(".plus-button");
+    const minusButtons = document.querySelectorAll(".minus-button");
+   let newCard = []
+const changeCounter = (id, method) =>{
+  cart.forEach(cart => {
+    if(cart.$id === id){
+      if(method === 'plus'){
+        cart.product_count_to_buy += 1
+      }else{
+        if(cart.product_count_to_buy === 1){
+          cart.product_count_to_buy = 1
+        } 
+        else{
+          cart.product_count_to_buy -= 1
         }
       }
-    })
-    setCartState(cart)
-  }
-
-  plusButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-changeCounter(e.target.name, 'plus')
-
-reactiveUpdateDom()
-
-    });     
-  })
-  minusButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      changeCounter(e.target.name, 'minus')
-      reactiveUpdateDom()
-
-
-   
-    });     
-  })
-  buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-
-const newCart = cart.filter((item) => item.$id !== e.target.name);
-setCartState(newCart)
-getCart()
-reactiveUpdateDom()
-
-    });     
-  })
-  
-}
     }
+  })
+}
+
+    plusButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        changeCounter(e.target.name, 'plus')
+       setCartState(cart)
+       getCart()
+       reactiveUpdateDom()
+      });     
+    })
+    minusButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        changeCounter(e.target.name, 'minus')
+        getCart()
+
+        setCartState(cart)
+        reactiveUpdateDom()
+      });     
+    })
+    buttons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const newCart = cart.filter((item) => item.$id !== e.target.name);
+        getCart()
+
+        setCartState(newCart)
+        reactiveUpdateDom()
+      });     
+    })
   }
-   
-  reactiveUpdateDom()
-
-
-
-
+      }
     </script>
   </body>
 </html>

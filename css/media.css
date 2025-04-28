@@ -815,17 +815,17 @@
   border-radius: 4px;
 }
 .products-card {
-  display: flex;
-
   padding: 10px;
   border-bottom: 1px solid #99c455;
+  height: 150px;
+}
+.products-card-wrapper {
   display: flex;
-  height: 100px;
 }
 .product-img {
   margin-right: 50px;
   width: auto;
-  height: auto;
+  height: 100px;
 }
 .btn-finaly {
   width: 100%;
@@ -868,7 +868,7 @@
   border-radius: 4px;
   width: 100px;
   border-radius: 14px;
-  margin-top: 10px;
+  margin-top: 45px;
 }
 .product-counter input {
   width: 50px;
@@ -916,4 +916,11 @@
 }
 .product-card-price p {
   font-weight: 700;
+}
+.product-price {
+  display: flex;
+  font-weight: 500;
+}
+.title-card {
+  margin-top: 10px;
 }
