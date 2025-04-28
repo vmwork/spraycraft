@@ -146,11 +146,13 @@ $(document).ready(function () {
 
 function shakeButton() {
   let button = document.querySelector(".btn");
-  button.classList.add("shake");
+  if (button) {
+    button.classList.add("shake");
 
-  setTimeout(function () {
-    button.classList.remove("shake");
-  }, 500);
+    setTimeout(function () {
+      button.classList.remove("shake");
+    }, 500);
+  }
 }
 
 setInterval(shakeButton, 3000);

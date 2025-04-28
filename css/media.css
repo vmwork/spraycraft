@@ -749,6 +749,7 @@
 
 .product-card-button {
   border: none;
+  margin-left: auto;
   background-color: transparent;
   cursor: pointer;
   position: relative;
@@ -814,6 +815,8 @@
   border-radius: 4px;
 }
 .products-card {
+  display: flex;
+
   padding: 10px;
   border-bottom: 1px solid #99c455;
   display: flex;
@@ -821,6 +824,8 @@
 }
 .product-img {
   margin-right: 50px;
+  width: auto;
+  height: auto;
 }
 .btn-finaly {
   width: 100%;

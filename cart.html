@@ -190,91 +190,9 @@
     <main>
       <div class="checout-wrapper">
         <section class="card">
-          <div class="card-items">
-            <div class="products-card">
-              <div class="">
-                <img
-                  class="product-img"
-                  src="/img/copter-photo.png"
-                  alt="copter"
-                  width="100"
-                />
-              </div>
-              <div class="">
-                <p>Високий врожай - наша гарантія!</p>
-                <div class="product-counter">
-                  <button>+</button>
-                  <input type="text" value="1" />
-                  <button>-</button>
-                </div>
-              </div>
-              <button class="product-card-button">
-                <img src="/img/back.png" alt="" width="25" />
-              </button>
-            </div>
-            <div class="products-card">
-              <div class="">
-                <img
-                  class="product-img"
-                  src="/img/copter-photo.png"
-                  alt="copter"
-                  width="100"
-                />
-              </div>
-              <div class="">
-                <p>Високий врожай - наша гарантія!</p>
-                <div class="product-counter">
-                  <button>+</button>
-                  <input type="text" value="1" />
-                  <button>-</button>
-                </div>
-              </div>
-              <button class="product-card-button">
-                <img src="/img/back.png" alt="" width="25" />
-              </button>
-            </div>
-            <div class="products-card">
-              <div class="">
-                <img
-                  class="product-img"
-                  src="/img/copter-photo.png"
-                  alt="copter"
-                  width="100"
-                />
-              </div>
-              <div class="">
-                <p>Високий врожай - наша гарантія!</p>
-                <div class="product-counter">
-                  <button>+</button>
-                  <input type="text" value="1" />
-                  <button>-</button>
-                </div>
-              </div>
-              <button class="product-card-button">
-                <img src="/img/back.png" alt="" width="25" />
-              </button>
-            </div>
-            <div class="products-card">
-              <div class="">
-                <img
-                  class="product-img"
-                  src="/img/copter-photo.png"
-                  alt="copter"
-                  width="100"
-                />
-              </div>
-              <div class="">
-                <p>Високий врожай - наша гарантія!</p>
-                <div class="product-counter">
-                  <button>+</button>
-                  <input type="text" value="1" />
-                  <button>-</button>
-                </div>
-              </div>
-              <button class="product-card-button">
-                <img src="/img/back.png" alt="" width="25" />
-              </button>
-            </div>
+          <div id="card-items" class="card-items">
+          
+    
           </div>
           <div class="user-form-wrapper">
             <div class="user-form">
@@ -412,7 +330,89 @@
 
     <!-- build:js js/main.js -->
     <script src="js/JavaScript.js"></script>
-    <script src="js/appwrite.js"></script>
+    <!-- <script src="js/appwrite.js"></script> -->
     <script src="js/cartState.js"></script>
+    <script> 
+
+      
+      let productsCard = document.getElementById("card-items");
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      for (let i = 0; i < cart.length; i++) {
+        let div = document.createElement("div");
+        const reactiveUpdateDom = () =>{
+                  div.className = "products-card";
+        div.innerHTML = `
+        <div class="">
+    <img
+      class="product-img"
+      src="${cart[i].url}"
+      alt="copter"
+      width="100"
+      height="auto"
+    />
+  </div>
+  <div class="">
+    <p>${cart[i].product_name}!</p>
+    <div class="product-counter">
+      <button class="plus-button" name="${cart[i].$id}">+</button>
+      <input type="text" value="${cart[i].product_count_to_buy}" />
+      <button class="minus-button" name="${cart[i].$id}">-</button>
+    </div>
+  </div>
+  <button class="product-card-button" >
+    <img name="${cart[i].$id}" src="/img/back.png" alt="" width="25" />
+  </button>  </div>`
+  productsCard.append(div);
+        }
+
+        reactiveUpdateDom()
+  if(i === cart.length - 1){
+    const buttons = document.querySelectorAll(".product-card-button");
+    const plusButtons = document.querySelectorAll(".plus-button");
+    const minusButtons = document.querySelectorAll(".minus-button");
+   let newCard = []
+const changeCounter = (id, method) =>{
+  cart.forEach(cart => {
+    if(cart.$id === id){
+      if(method === 'plus'){
+        cart.product_count_to_buy += 1
+      }else{
+        if(cart.product_count_to_buy === 1){
+          cart.product_count_to_buy = 1
+        } 
+        else{
+          cart.product_count_to_buy -= 1
+        }
+      }
+    }
+  })
+}
+
+    plusButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        changeCounter(e.target.name, 'plus')
+       setCartState(cart)
+       reactiveUpdateDom()
+      });     
+    })
+    minusButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        changeCounter(e.target.name, 'minus')
+        setCartState(cart)
+        reactiveUpdateDom()
+      });     
+    })
+    buttons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const newCart = cart.filter((item) => item.$id !== e.target.name);
+        setCartState(newCart)
+        reactiveUpdateDom()
+      });     
+    })
+  }
+      }
+    </script>
   </body>
 </html>
+
+
