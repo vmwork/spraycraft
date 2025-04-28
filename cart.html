@@ -190,10 +190,7 @@
     <main>
       <div class="checout-wrapper">
         <section class="card">
-          <div id="card-items" class="card-items">
-          
-    
-          </div>
+          <div id="card-items" class="card-items"></div>
           <div class="user-form-wrapper">
             <div class="user-form">
               <div class="">
@@ -206,41 +203,42 @@
                   <input type="text" placeholder="Телефон" />
                 </div>
                 <div class="flex">
-                  <label for="name">Місто</label>
-                  <input type="text" placeholder="Ваше Місто" />
-                </div>
-                <div class="flex">
                   <label for="name">Електронна пошта</label>
                   <input type="text" placeholder="Ваша пошта" />
                 </div>
               </div>
             </div>
             <div class="">
-        
               <div class="delivery">
-                <label >Спосіб доставки</label>
-                <select >
-                  <option>Нова Пошта</option>
+                <label for="name">Місто</label>
 
+                <select id="city">
+                  <option>Ваше Місто</option>
                 </select>
+              </div>
+
+              <div class="delivery">
+                <label>Спосіб доставки</label>
+                <select>
+                  <option>Нова Пошта</option>
+                </select>
+              </div>
+
+              <div class="delivery">
+                <label>Відділення</label>
+                <select id="postomat">
+                  <option>Спочатку виберіть місто</option>
+                </select>
+              </div>
+              <div class="delivery">
+                <label>Оплата</label>
+                <select>
+                  <option>Накладний платіж</option>
+                  <option>Безготівкова</option>
+                </select>
+              </div>
+              <button class="btn-finaly">Оформити замовлення</button>
             </div>
-            
-            <div class="delivery">
-              <label >Відділення</label>
-              <select >
-                <option>Одесса №12</option>
-
-              </select>
-          </div>
-          <div class="delivery">
-            <label >Оплата</label>
-            <select >
-              <option>Накладний платіж</option>
-              <option>Безготівкова</option>
-
-            </select>
-        </div>
-            <button class="btn-finaly">Оформити замовлення</button>
           </div>
         </section>
       </div>
@@ -332,126 +330,161 @@
     <script src="js/JavaScript.js"></script>
     <!-- <script src="js/appwrite.js"></script> -->
     <script src="js/cartState.js"></script>
-    <script> 
+    <script>
       let productsCard = document.getElementById("card-items");
       let buttons = document.querySelectorAll(".product-card-button");
       let plusButtons = document.querySelectorAll(".plus-button");
       let minusButtons = document.querySelectorAll(".minus-button");
-      let cart = []
+      let cart = [];
       const getCart = () => {
         cart = JSON.parse(localStorage.getItem("cart")) || [];
-      }
-   getCart()
-   const reactiveUpdateDom = () => {
+      };
+      getCart();
+      const reactiveUpdateDom = () => {
+        productsCard = document.getElementById("card-items");
+        while (productsCard.firstChild) {
+          productsCard.removeChild(productsCard.firstChild);
+        }
 
-     productsCard = document.getElementById("card-items");
-     while (productsCard.firstChild) {
-      productsCard.removeChild(productsCard.firstChild);
-    }
-
-     let div = document.createElement("div");
-   for (let i = 0; i < cart.length; i++) {
-    
-    div = document.createElement("div");
-              div.className = "";
-    div.innerHTML = `
-    <div class="products-card">
-    <div class="products-card-wrapper">
-<img
-  class="product-img"
-  src="${cart[i].url}"
-  alt="copter"
-  width="100"
-  height="auto"
-/>
+        let div = document.createElement("div");
+        for (let i = 0; i < cart.length; i++) {
+          div = document.createElement("div");
+          div.className = "";
+          div.innerHTML = `
+          <div class="products-card">
+          <div class="products-card-wrapper">
+      <img
+        class="product-img"
+        src="${cart[i].url}"
+        alt="copter"
+        width="100"
+        height="auto"
+      />
 
 
-<div class="title-card">
-<p>${cart[i].product_name}!</p>
-<div class="product-counter">
-  <button class="plus-button" name="${cart[i].$id}">+</button>
-  <input type="text" value="${cart[i].product_count_to_buy}" />
-  <button class="minus-button" name="${cart[i].$id}">-</button>
-</div>
+      <div class="title-card">
+      <p>${cart[i].product_name}!</p>
+      <div class="product-counter">
+        <button class="plus-button" name="${cart[i].$id}">+</button>
+        <input type="text" value="${cart[i].product_count_to_buy}" />
+        <button class="minus-button" name="${cart[i].$id}">-</button>
+      </div>
 
-</div>
-<button class="product-card-button" >
-<img name="${cart[i].$id}" src="/img/back.png" alt="" width="25" />
-</button>  
+      </div>
+      <button class="product-card-button" >
+      <img name="${cart[i].$id}" src="/img/back.png" alt="" width="25" />
+      </button>
 
-</div>
-<div class="product-price">
-  <p>Ціна:<p> ${cart[i].price}</p></p>
-</div>
-</div>
-`
-productsCard.append(div);
+      </div>
+      <div class="product-price">
+        <p>Ціна:<p> ${cart[i].price}</p></p>
+      </div>
+      </div>
+      `;
+          productsCard.append(div);
 
+          if (i === cart.length - 1) {
+            buttons = document.querySelectorAll(".product-card-button");
+            plusButtons = document.querySelectorAll(".plus-button");
+            minusButtons = document.querySelectorAll(".minus-button");
+            const changeCounter = (id, method) => {
+              cart.forEach((cart) => {
+                if (cart.$id === id) {
+                  if (method === "plus") {
+                    console.log("plus");
+                    cart.product_count_to_buy += 1;
+                  } else {
+                    console.log("minus");
+                    if (cart.product_count_to_buy === 1) {
+                      cart.product_count_to_buy = 1;
+                    } else {
+                      cart.product_count_to_buy -= 1;
+                    }
+                  }
+                }
+              });
+              setCartState(cart);
+            };
 
-if(i === cart.length - 1){
+            plusButtons.forEach((button) => {
+              button.addEventListener("click", (e) => {
+                changeCounter(e.target.name, "plus");
 
-  buttons = document.querySelectorAll(".product-card-button");
-  plusButtons = document.querySelectorAll(".plus-button");
-  minusButtons = document.querySelectorAll(".minus-button");
-  const changeCounter = (id, method) =>{
-    cart.forEach(cart => {
-      if(cart.$id === id){
-        if(method === 'plus'){
-          console.log("plus")
-          cart.product_count_to_buy += 1
-        }else{
-          console.log("minus")
-          if(cart.product_count_to_buy === 1){
-            cart.product_count_to_buy = 1
-          } 
-          else{
-            cart.product_count_to_buy -= 1
+                reactiveUpdateDom();
+              });
+            });
+            minusButtons.forEach((button) => {
+              button.addEventListener("click", (e) => {
+                changeCounter(e.target.name, "minus");
+                reactiveUpdateDom();
+              });
+            });
+            buttons.forEach((button) => {
+              button.addEventListener("click", (e) => {
+                const newCart = cart.filter(
+                  (item) => item.$id !== e.target.name
+                );
+                setCartState(newCart);
+                getCart();
+                reactiveUpdateDom();
+              });
+            });
           }
         }
-      }
-    })
-    setCartState(cart)
-  }
+      };
 
-  plusButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-changeCounter(e.target.name, 'plus')
+      reactiveUpdateDom();
 
-reactiveUpdateDom()
-
-    });     
-  })
-  minusButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      changeCounter(e.target.name, 'minus')
-      reactiveUpdateDom()
-
-
-   
-    });     
-  })
-  buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-
-const newCart = cart.filter((item) => item.$id !== e.target.name);
-setCartState(newCart)
-getCart()
-reactiveUpdateDom()
-
-    });     
-  })
-  
-}
-    }
-  }
-   
-  reactiveUpdateDom()
-
-
-
-
+      let citizens = [];
+      let city = [];
+      const citizensList = document.getElementById("city");
+      const getsityzens = async () => {
+        await fetch(
+          "https://api.novapost.com/site/v.1.0/settlements?ids[]=112225&ids[]=114833&ids[]=116260&ids[]=118064&ids[]=121300&ids[]=122635&ids[]=125394&ids[]=128845&ids[]=133451&ids[]=134335"
+        )
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            citizens = data.items;
+            console.log(citizens);
+            for (let i = 0; i < citizens.length; i++) {
+              let cityDiv = document.createElement("option");
+              cityDiv.className = `${citizens[i].id}`;
+              cityDiv.innerHTML = `
+                            ${citizens[i].alternativeNames[1]}
+                          `;
+              citizensList.append(cityDiv);
+            }
+          });
+      };
+      getsityzens();
+      const pstomatList = document.getElementById("postomat");
+      const getPostomat = async () => {
+        await fetch(
+          "https://api.novapost.com/site/v.1.0/settlements?ids[]=112225&ids[]=114833&ids[]=116260&ids[]=118064&ids[]=121300&ids[]=122635&ids[]=125394&ids[]=128845&ids[]=133451&ids[]=134335"
+        )
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            postomats = data.items;
+            for (let i = 0; i < postomats.length; i++) {
+              let postomatDiv = document.createElement("option");
+              postomatDiv.className = "";
+              postomatDiv.innerHTML = `
+                            ${postomats[i]}
+                          `;
+              pstomatList.append(postomatDiv);
+            }
+          });
+      };
+      console.log(citizensList);
+      citizensList.addEventListener("click", (e) => {
+        const selectedcity = document.getElementById("city");
+        console.log(e);
+        console.log(selectedcity);
+      });
     </script>
   </body>
 </html>
-
-
