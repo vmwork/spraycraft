@@ -942,10 +942,13 @@
 .flex {
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-between;
 }
 .flex label {
   min-width: 150px;
+  align-self: flex-start;
+  font-size: 20px;
 }
 .flex input {
   min-width: 90%;
