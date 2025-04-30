@@ -702,7 +702,7 @@
   }
   .menu-before {
     width: 100%;
-    height: 2600px;
+    /* height: 2600px; */
     background: rgba(26, 26, 26, 0.35);
     position: absolute;
     top: 100%;
