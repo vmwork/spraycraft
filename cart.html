@@ -200,15 +200,19 @@
               <div class="">
                 <div class="flex user-form-item">
                   <label for="name">ПІП</label>
-                  <input type="text" placeholder="Ваше ім'я" />
+                  <input class="userName" type="text" placeholder="Ваше ім'я" />
                 </div>
                 <div class="flex user-form-item">
                   <label for="name">Телефон</label>
-                  <input type="text" placeholder="Телефон" />
+                  <input class="userPhone" type="text" placeholder="Телефон" />
                 </div>
                 <div class="flex user-form-item">
                   <label for="name">Електронна пошта</label>
-                  <input type="text" placeholder="Ваша пошта" />
+                  <input
+                    class="userEmail"
+                    type="text"
+                    placeholder="Ваша пошта"
+                  />
                 </div>
               </div>
             </div>
@@ -236,12 +240,14 @@
               </div>
               <div class="delivery user-form-item">
                 <label>Оплата</label>
-                <select>
+                <select class="paymant">
                   <option>Накладний платіж</option>
                   <option>Безготівкова</option>
                 </select>
               </div>
-              <button class="btn-finaly">Оформити замовлення</button>
+              <button id="sendmessage" class="btn-finaly">
+                Оформити замовлення
+              </button>
             </div>
           </div>
         </section>
@@ -334,6 +340,7 @@
     <script src="js/JavaScript.js"></script>
     <!-- <script src="js/appwrite.js"></script> -->
     <script src="js/cartState.js"></script>
+    <script src="js/tgService.js"></script>
     <script>
       let productsCard = document.getElementById("card-items");
       let buttons = document.querySelectorAll(".product-card-button");
@@ -389,8 +396,8 @@
           width="100"
           height="auto"
         />
-  
-  
+
+
         <div class="title-card">
         <p>${cart[i].product_name}!</p>
         <div class="product-counter">
@@ -398,12 +405,12 @@
           <input type="text" value="${cart[i].product_count_to_buy}" />
           <button class="minus-button" name="${cart[i].$id}">-</button>
         </div>
-  
+
         </div>
         <button class="product-card-button" >
         <img name="${cart[i].$id}" src="/img/back.png" alt="" width="25" />
         </button>
-  
+
         </div>
         <div class="product-price">
           <p>Ціна:<p> ${cart[i].price * cart[i].product_count_to_buy}  </p></p>
@@ -493,7 +500,6 @@
       const pstomatList = document.getElementById("postomat");
       const getPostomat = async (selectedcityid) => {
         const selectedCity = citizens.find((item) => item.id == selectedcityid);
-        console.log(selectedCity);
         await fetch(
           `https://api.novapost.com/site/v.1.0/divisions?bottomLeftLatitude=51.401643&bottomLeftLongitude=31.188113&topRightLatitude=51.580991&topRightLongitude=31.408870&divisionCategories[]=PostBranch&divisionCategories[]=CargoBranch&divisionCategories[]=Postomat&divisionCategories[]=PUDO&settlementIds[]=134335&limit=15&page=1&sort[source]=asc`
         )
@@ -516,6 +522,25 @@
       citizensList.addEventListener("change", (e) => {
         const selectedcity = document.getElementById("city").value;
         getPostomat(selectedcity);
+      });
+
+      const sendMessageButton = document.getElementById("sendmessage");
+      const getUserData = () => {
+        const selectedcity = document.getElementById("city").value;
+        const cityName = citizens.find((item) => item.id == selectedcity).name;
+        const userdata = {
+          name: document.querySelector(".userName").value,
+          phone: document.querySelector(".userPhone").value,
+          email: document.querySelector(".userEmail").value,
+          city: cityName,
+          postomat: document.getElementById("postomat").value,
+          delivery: document.querySelector(".delivery select").value,
+          payment: document.querySelector(".paymant").value,
+        };
+        return userdata;
+      };
+      sendMessageButton.addEventListener("click", () => {
+        sendMessageToTg(cart, getUserData());
       });
     </script>
   </body>
