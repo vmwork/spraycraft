@@ -11,43 +11,43 @@ const sendMessageToTg = async (message, userData) => {
         Артикул: ${item.artical},
 
         Кількість: ${item.product_count_to_buy}
-        ________________________________________
+        ____________________
         `;
     newMessage.push(text);
   });
-  try {
-    const response = await fetch(APIMessage, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: `
-  📩 Вам нова заявка:
+  //   try {
+  //     const response = await fetch(APIMessage, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         chat_id: TELEGRAM_CHAT_ID,
+  //         text: `
+  //     📩 Вам нова заявка:
 
-  Имя: ${userData.name},
+  //     Имя: ${userData.name},
 
-  Телефон: ${userData.phone},
+  //     Телефон: ${userData.phone},
 
-  Почта: ${userData.email},
+  //     Почта: ${userData.email},
 
-  Місто: ${userData.city},
+  //     Місто: ${userData.city},
 
-  Спосіб доставки: ${userData.delivery},
+  //     Спосіб доставки: ${userData.delivery},
 
-  Відділення: ${userData.postomat},
+  //     Відділення: ${userData.postomat},
 
-  Оплата : ${userData.payment},
+  //     Оплата : ${userData.payment},
 
-  Товари до замовлення:
-  ${newMessage}`,
-      }),
-    });
-    console.log(response);
-    // if (response.ok) notifySuccess();
-    // if (!response.ok) notifyFlail();
-  } catch (error) {
-    console.error(error);
-  }
+  //     Товари до замовлення:
+  //     ${newMessage}`,
+  //       }),
+  //     });
+  //     console.log(response);
+  //     // if (response.ok) notifySuccess();
+  //     // if (!response.ok) notifyFlail();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
 };

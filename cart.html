@@ -81,36 +81,8 @@
       <span class="close-modal close-modal-times">&times;</span>
       <div class="modal-block modal-form">
         <div class="contacts-block">
-          <h2><span>БАЖАЄТЕ ОТРИМАТИ</span> ШВИДКИЙ РОЗРАХУНОК ВАРТОСТІ?</h2>
-          <p>
-            Заповніть Ваші контактні дані та наш консультант зв’яжеться з Вами
-          </p>
-
-          <form
-            class="form telegram-form"
-            action="javascript:void(null);"
-            method="post"
-            id="form"
-            onsubmit="sendForm('form')"
-          >
-            <input
-              class="input"
-              type="text"
-              name="name"
-              placeholder="Ваше Ім’я"
-              required
-            />
-            <input
-              class="input"
-              type="text"
-              name="phone"
-              placeholder="Ваш номер телефону"
-              required
-            />
-            <input type="hidden" name="subject" value="Новая заявка" />
-
-            <button class="btn-black">Відправити</button>
-          </form>
+          <h2>Дякуємо за замовлення!</h2>
+          <p>Наш консультант зв’яжеться з Вами</p>
         </div>
       </div>
 
@@ -204,7 +176,14 @@
                 </div>
                 <div class="flex user-form-item">
                   <label for="name">Телефон</label>
-                  <input class="userPhone" type="text" placeholder="Телефон" />
+                  <input
+                    class="userPhone"
+                    type="text"
+                    name="tel"
+                    placeholder="Номер телефона"
+                    required
+                    maxlength="13"
+                  />
                 </div>
                 <div class="flex user-form-item">
                   <label for="name">Електронна пошта</label>
@@ -337,7 +316,7 @@
     <script src="assets/animate/animate-css.js"></script>
 
     <!-- build:js js/main.js -->
-    <script src="js/JavaScript.js"></script>
+    <!-- <script src="js/JavaScript.js"></script> -->
     <!-- <script src="js/appwrite.js"></script> -->
     <script src="js/cartState.js"></script>
     <script src="js/tgService.js"></script>
@@ -525,7 +504,35 @@
       });
 
       const sendMessageButton = document.getElementById("sendmessage");
+
       const getUserData = () => {
+        const name = document.querySelector(".userName").value;
+        const phone = document.querySelector(".userPhone").value;
+        const email = document.querySelector(".userEmail").value;
+        const shoosenCity = document.getElementById("city").value;
+        const postomat = document.getElementById("postomat").value;
+        const delivery = document.querySelector(".delivery select").value;
+        const payment = document.querySelector(".paymant").value;
+
+        if (name === "" || name === " ") {
+          alert("Введіть ваше ім'я");
+          return false;
+        } else if (phone === "") {
+          alert("Введіть ваш телефон");
+          return false;
+        } else if (email === "") {
+          alert("Введіть вашу електронну пошту");
+          return false;
+        } else if (shoosenCity === "Ваше Місто") {
+          alert("Виберіть ваше місто");
+          return false;
+        } else if (postomat === "Спочатку виберіть місто") {
+          alert("Виберіть ваше відділення");
+          return false;
+        } else if (payment === "") {
+          alert("Виберіть спосіб оплати");
+          return false;
+        }
         const selectedcity = document.getElementById("city").value;
         const cityName = citizens.find((item) => item.id == selectedcity).name;
         const userdata = {
@@ -539,8 +546,36 @@
         };
         return userdata;
       };
+      const openSenksModal = () => {
+        $(".modal-block").hide();
+        $(".modal").css("display", "flex");
+        $(".modal-form").css("display", "block");
+        $(".open-modal").click(function () {
+          $(".modal-block").hide();
+          $(".modal").css("display", "flex");
+          var name = "." + $(this).attr("data-openModal");
+          $(name).css("display", "block");
+        });
+
+        $(".close-modal").click(function () {
+          $(".modal").hide();
+          $(".modal-block").hide();
+        });
+
+        var modal = $(".modal")[0];
+
+        $(window).click(function () {
+          if (event.target == modal) {
+            $(".modal-block").hide();
+            $(".modal").hide();
+          }
+        });
+      };
       sendMessageButton.addEventListener("click", () => {
-        sendMessageToTg(cart, getUserData());
+        if (getUserData()) {
+          sendMessageToTg(cart, getUserData());
+          openSenksModal();
+        }
       });
     </script>
   </body>

@@ -56,6 +56,7 @@ $(document).ready(function () {
     var name = "." + $(this).attr("data-openModal");
     $(name).css("display", "block");
   });
+  
   $(".close-modal").click(function () {
     $(".modal").hide();
     $(".modal-block").hide();
@@ -132,6 +133,11 @@ $(document).ready(function () {
   var modalForm = document.querySelector(".modal-form") || false;
   if (modalForm) {
     setTimeout(openModal, 30000);
+  }
+  function openSenksModal() {
+    $(".modal-block").hide();
+    $(".modal").css("display", "flex");
+    $(".modal-senks").css("display", "block");
   }
 
   // animation scroll
