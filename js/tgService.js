@@ -3,6 +3,7 @@ const TELEGRAM_CHAT_ID = "@spray_groupe";
 const APIMessage = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
 const sendMessageToTg = async (message, userData) => {
+  console.log(userData);
   let newMessage = [];
   message.forEach((item) => {
     const text = `
@@ -15,39 +16,43 @@ const sendMessageToTg = async (message, userData) => {
         `;
     newMessage.push(text);
   });
-  //   try {
-  //     const response = await fetch(APIMessage, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         chat_id: TELEGRAM_CHAT_ID,
-  //         text: `
-  //     📩 Вам нова заявка:
+  try {
+    const response = await fetch(APIMessage, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: `
+      📩 Вам нова заявка:
 
-  //     Имя: ${userData.name},
+      Имя: ${userData.name},
 
-  //     Телефон: ${userData.phone},
+      Телефон: ${userData.phone},
 
-  //     Почта: ${userData.email},
+      Почта: ${userData.email},
 
-  //     Місто: ${userData.city},
+      Область: ${userData.obl},
 
-  //     Спосіб доставки: ${userData.delivery},
+      Місто: ${userData.city},
 
-  //     Відділення: ${userData.postomat},
+      Спосіб доставки: ${userData.delivery},
 
-  //     Оплата : ${userData.payment},
+      Відділення: ${userData.postomat},
 
-  //     Товари до замовлення:
-  //     ${newMessage}`,
-  //       }),
-  //     });
-  //     console.log(response);
-  //     // if (response.ok) notifySuccess();
-  //     // if (!response.ok) notifyFlail();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
+      Оплата : ${userData.payment},
+
+      Коментар : ${userData.comment},
+
+      Товари до замовлення:
+      ${newMessage}`,
+      }),
+    });
+    console.log(response);
+    // if (response.ok) notifySuccess();
+    // if (!response.ok) notifyFlail();
+  } catch (error) {
+    console.error(error);
+  }
 };

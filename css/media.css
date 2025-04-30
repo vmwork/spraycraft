@@ -748,6 +748,9 @@
   margin-top: 10px;
   margin-bottom: 50px;
 }
+.user-form-item {
+  margin-top: 20px;
+}
 .filter-products {
   margin-left: 20px;
 }
@@ -964,6 +967,8 @@
   font-size: 20px;
 }
 .delivery select,
+.delivery input,
+.delivery textarea,
 .filter-products select {
   width: 100%;
   padding: 10px;

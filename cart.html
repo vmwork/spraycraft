@@ -197,6 +197,13 @@
             </div>
             <div class="">
               <div class="delivery user-form-item">
+                <label for="name">Область</label>
+
+                <select id="obl">
+                  <option>Ваша Область</option>
+                </select>
+              </div>
+              <div class="delivery user-form-item">
                 <label for="name">Місто</label>
 
                 <select id="city">
@@ -206,16 +213,21 @@
 
               <div class="delivery user-form-item">
                 <label>Спосіб доставки</label>
-                <select>
+                <select id="delivery">
                   <option>Нова Пошта</option>
                 </select>
               </div>
 
               <div class="delivery user-form-item">
-                <label>Відділення</label>
-                <select id="postomat">
-                  <option>Спочатку виберіть місто</option>
-                </select>
+                <div class="flex user-form-item">
+                  <label for="name">Відділення</label>
+                  <input
+                    id="postomat"
+                    class="userEmail"
+                    type="text"
+                    placeholder="Введіть відділення"
+                  />
+                </div>
               </div>
               <div class="delivery user-form-item">
                 <label>Оплата</label>
@@ -224,6 +236,19 @@
                   <option>Безготівкова</option>
                 </select>
               </div>
+              <div class="delivery user-form-item">
+                <div class="flex user-form-item">
+                  <label for="name">Коментар</label>
+                  <textarea
+                    id="comment"
+                    class="userComent"
+                    type="texarea"
+                    placeholder="Введіть коментар"
+                  ></textarea>
+                  </div>
+                </div>
+              </div>
+
               <button id="sendmessage" class="btn-finaly">
                 Оформити замовлення
               </button>
@@ -320,7 +345,7 @@
     <!-- <script src="js/appwrite.js"></script> -->
     <script src="js/cartState.js"></script>
     <script src="js/tgService.js"></script>
-    <script>
+    <script type="module">
       let productsCard = document.getElementById("card-items");
       let buttons = document.querySelectorAll(".product-card-button");
       let plusButtons = document.querySelectorAll(".plus-button");
@@ -408,10 +433,8 @@
               cart.forEach((cart) => {
                 if (cart.$id === id) {
                   if (method === "plus") {
-                    console.log("plus");
                     cart.product_count_to_buy += 1;
                   } else {
-                    console.log("minus");
                     if (cart.product_count_to_buy === 1) {
                       cart.product_count_to_buy = 1;
                     } else {
@@ -454,64 +477,68 @@
 
       let citizens = [];
       let city = [];
-      const citizensList = document.getElementById("city");
+      const citizensList = document.getElementById("obl");
       const getsityzens = async () => {
-        await fetch(
-          "https://api.novapost.com/site/v.1.0/settlements?ids[]=112225&ids[]=114833&ids[]=116260&ids[]=118064&ids[]=121300&ids[]=122635&ids[]=125394&ids[]=128845&ids[]=133451&ids[]=134335"
-        )
+        await fetch("./assets/citizen/sitizen.json")
           .then((response) => {
             return response.json();
           })
           .then((data) => {
-            citizens = data.items;
+            citizens = data;
 
             for (let i = 0; i < citizens.length; i++) {
               let cityDiv = document.createElement("option");
-              cityDiv.value = `${citizens[i].id}`;
+              cityDiv.value = `${citizens[i].name}`;
               cityDiv.innerHTML = `
-                            ${citizens[i].alternativeNames[1]}
+                            ${citizens[i].name}
                           `;
               citizensList.append(cityDiv);
             }
           });
       };
       getsityzens();
-      const pstomatList = document.getElementById("postomat");
-      const getPostomat = async (selectedcityid) => {
-        const selectedCity = citizens.find((item) => item.id == selectedcityid);
-        await fetch(
-          `https://api.novapost.com/site/v.1.0/divisions?bottomLeftLatitude=51.401643&bottomLeftLongitude=31.188113&topRightLatitude=51.580991&topRightLongitude=31.408870&divisionCategories[]=PostBranch&divisionCategories[]=CargoBranch&divisionCategories[]=Postomat&divisionCategories[]=PUDO&settlementIds[]=134335&limit=15&page=1&sort[source]=asc`
-        )
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            postomats = data.items;
-            for (let i = 0; i < postomats.length; i++) {
-              let postomatDiv = document.createElement("option");
-              postomatDiv.className = "";
-              postomatDiv.innerHTML = `
+      const cityList = document.getElementById("city");
+      let postomats = [];
+      const getPostomat = (name) => {
+        const selectedCity = citizens.find((item) => item.name == name);
+
+        postomats = selectedCity.areas;
+
+        for (let i = 0; i < postomats.length; i++) {
+          let postomatDiv = document.createElement("option");
+          postomatDiv.className = "";
+          postomatDiv.innerHTML = `
                             ${postomats[i].name}
                           `;
-              pstomatList.append(postomatDiv);
-            }
-          });
+          cityList.append(postomatDiv);
+        }
       };
 
       citizensList.addEventListener("change", (e) => {
-        const selectedcity = document.getElementById("city").value;
+        const selectedcity = document.getElementById("obl").value;
         getPostomat(selectedcity);
       });
 
       const sendMessageButton = document.getElementById("sendmessage");
 
+      const phone = document.querySelector(".userPhone");
+      phone.addEventListener("focus", (_) => {
+        // Если там ничего нет или есть, но левое
+        if (!/^\+\d*$/.test(phone.value))
+          // То вставляем знак плюса как значение
+          phone.value = "+380";
+      });
+      phone.addEventListener("keypress", (e) => {
+        // Отменяем ввод не цифр
+        if (!/\d/.test(e.key)) e.preventDefault();
+      });
       const getUserData = () => {
         const name = document.querySelector(".userName").value;
         const phone = document.querySelector(".userPhone").value;
         const email = document.querySelector(".userEmail").value;
         const shoosenCity = document.getElementById("city").value;
         const postomat = document.getElementById("postomat").value;
-        const delivery = document.querySelector(".delivery select").value;
+        const delivery = document.querySelector(".delivery").value;
         const payment = document.querySelector(".paymant").value;
 
         if (name === "" || name === " ") {
@@ -533,16 +560,17 @@
           alert("Виберіть спосіб оплати");
           return false;
         }
-        const selectedcity = document.getElementById("city").value;
-        const cityName = citizens.find((item) => item.id == selectedcity).name;
+
         const userdata = {
           name: document.querySelector(".userName").value,
           phone: document.querySelector(".userPhone").value,
           email: document.querySelector(".userEmail").value,
-          city: cityName,
+          city: document.getElementById("city").value,
+          obl: document.getElementById("obl").value,
           postomat: document.getElementById("postomat").value,
-          delivery: document.querySelector(".delivery select").value,
+          delivery: document.getElementById("delivery").value,
           payment: document.querySelector(".paymant").value,
+          comment: document.querySelector(".userComent").value,
         };
         return userdata;
       };
