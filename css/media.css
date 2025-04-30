@@ -894,7 +894,8 @@
   border-radius: 4px;
   padding: 10px;
   cursor: pointer;
-  margin: 5px;
+  margin: 0px;
+  margin-top: 10px;
 }
 .btn-finaly:hover {
   background-color: #99c455;

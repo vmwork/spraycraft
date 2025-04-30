@@ -605,6 +605,36 @@
           openSenksModal();
         }
       });
+
+        // toggle phones
+  $(".phones-mobile").click(function () {
+    $(".header-phones-list").toggleClass("active");
+  });
+
+  $("main").click(function () {
+    $(".header-phones-list").removeClass("active");
+  });
+  // show more
+  $(".read-more-btn").click(function () {
+    $(".read-more-btn").hide();
+    $(".hide-mobile").show();
+    $(".last-text").addClass("active");
+  });
+    /*mob_menu*/
+    $(".menu_mob").click(function () {
+      $(".menu_mob").toggleClass("active_drop_men");
+      $(".header-menu").toggleClass("active");
+    });
+  
+    $(".menu-before").click(function () {
+      $(".menu_mob").toggleClass("active_drop_men");
+      $(".header-menu").toggleClass("active");
+    });
+  
+    $(".go-to").click(function () {
+      $(".menu_mob").toggleClass("active_drop_men");
+      $(".header-menu").toggleClass("active");
+    });
     </script>
   </body>
 </html>
