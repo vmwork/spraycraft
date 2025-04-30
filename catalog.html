@@ -192,11 +192,24 @@
           <div class="card">
             <p id="card-count" class="card-counter">0</p>
             <a href="/cart.html">
-              <img src="./img/cart.svg" alt="card" width="50"
+              <img class="card-img" src="./img/cart.svg" alt="card" width="50"
             /></a>
           </div>
         </div>
-        <section id="cards" class="product-card-wrapper"></section>
+
+        <section class="product-card-wrapper">
+          <div class="filter-products">
+            <label for="name">Фільтр:</label>
+
+            <select id="products-filter">
+              <option>Усі</option>
+              <option>AeroDreams ADS-101 Strix</option>
+              <option>Nostromo Yagua</option>
+            </select>
+          </div>
+          </div>
+          <div id="cards" class="product-card-list"></div>
+        </section>
       </main>
 
       <footer class="footer" id="contacts">

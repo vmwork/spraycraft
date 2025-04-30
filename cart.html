@@ -190,26 +190,30 @@
     <main>
       <div class="checout-wrapper">
         <section class="card">
-          <div id="card-items" class="card-items"></div>
+          <div class="card-items">
+            <div id="card-items"></div>
+            <div id="card-total-price" class="total-price"></div>
+          </div>
+
           <div class="user-form-wrapper">
             <div class="user-form">
               <div class="">
-                <div class="flex">
-                  <label for="name">ФІП</label>
+                <div class="flex user-form-item">
+                  <label for="name">ПІП</label>
                   <input type="text" placeholder="Ваше ім'я" />
                 </div>
-                <div class="flex">
+                <div class="flex user-form-item">
                   <label for="name">Телефон</label>
                   <input type="text" placeholder="Телефон" />
                 </div>
-                <div class="flex">
+                <div class="flex user-form-item">
                   <label for="name">Електронна пошта</label>
                   <input type="text" placeholder="Ваша пошта" />
                 </div>
               </div>
             </div>
             <div class="">
-              <div class="delivery">
+              <div class="delivery user-form-item">
                 <label for="name">Місто</label>
 
                 <select id="city">
@@ -217,20 +221,20 @@
                 </select>
               </div>
 
-              <div class="delivery">
+              <div class="delivery user-form-item">
                 <label>Спосіб доставки</label>
                 <select>
                   <option>Нова Пошта</option>
                 </select>
               </div>
 
-              <div class="delivery">
+              <div class="delivery user-form-item">
                 <label>Відділення</label>
                 <select id="postomat">
                   <option>Спочатку виберіть місто</option>
                 </select>
               </div>
-              <div class="delivery">
+              <div class="delivery user-form-item">
                 <label>Оплата</label>
                 <select>
                   <option>Накладний платіж</option>
@@ -340,6 +344,18 @@
         cart = JSON.parse(localStorage.getItem("cart")) || [];
       };
       getCart();
+
+      const setTotalPrice = () => {
+        const totalPrice = document.getElementById("card-total-price");
+        let total = 0;
+        cart.forEach((item) => {
+          total += item.price * item.product_count_to_buy;
+        });
+        totalPrice.innerHTML = `<dv class="total-price">
+          <p>Повна ціна : </p>
+          <p>${total} грн</p>
+        </div>`;
+      };
       const reactiveUpdateDom = () => {
         productsCard = document.getElementById("card-items");
         while (productsCard.firstChild) {
@@ -347,41 +363,56 @@
         }
 
         let div = document.createElement("div");
-        for (let i = 0; i < cart.length; i++) {
+
+        if (cart.length === 0) {
           div = document.createElement("div");
           div.className = "";
           div.innerHTML = `
-          <div class="products-card">
-          <div class="products-card-wrapper">
-      <img
-        class="product-img"
-        src="${cart[i].url}"
-        alt="copter"
-        width="100"
-        height="auto"
-      />
-
-
-      <div class="title-card">
-      <p>${cart[i].product_name}!</p>
-      <div class="product-counter">
-        <button class="plus-button" name="${cart[i].$id}">+</button>
-        <input type="text" value="${cart[i].product_count_to_buy}" />
-        <button class="minus-button" name="${cart[i].$id}">-</button>
-      </div>
-
-      </div>
-      <button class="product-card-button" >
-      <img name="${cart[i].$id}" src="/img/back.png" alt="" width="25" />
-      </button>
-
-      </div>
-      <div class="product-price">
-        <p>Ціна:<p> ${cart[i].price}</p></p>
-      </div>
-      </div>
-      `;
+          <div class="products-empty">
+          <p>Кошик порожній</p>
+          <a  href="/catalog.html">До Магазину</a>
+          </div>
+          `;
           productsCard.append(div);
+        }
+        for (let i = 0; i < cart.length; i++) {
+          div = document.createElement("div");
+          div.className = "";
+
+          div.innerHTML = `
+            <div class="products-card">
+            <div class="products-card-wrapper">
+        <img
+          class="product-img"
+          src="${cart[i].url}"
+          alt="copter"
+          width="100"
+          height="auto"
+        />
+  
+  
+        <div class="title-card">
+        <p>${cart[i].product_name}!</p>
+        <div class="product-counter">
+          <button class="plus-button" name="${cart[i].$id}">+</button>
+          <input type="text" value="${cart[i].product_count_to_buy}" />
+          <button class="minus-button" name="${cart[i].$id}">-</button>
+        </div>
+  
+        </div>
+        <button class="product-card-button" >
+        <img name="${cart[i].$id}" src="/img/back.png" alt="" width="25" />
+        </button>
+  
+        </div>
+        <div class="product-price">
+          <p>Ціна:<p> ${cart[i].price * cart[i].product_count_to_buy}  </p></p>
+        </div>
+        </div>
+        `;
+
+          productsCard.append(div);
+          setTotalPrice();
 
           if (i === cart.length - 1) {
             buttons = document.querySelectorAll(".product-card-button");
@@ -447,10 +478,10 @@
           })
           .then((data) => {
             citizens = data.items;
-            console.log(citizens);
+
             for (let i = 0; i < citizens.length; i++) {
               let cityDiv = document.createElement("option");
-              cityDiv.className = `${citizens[i].id}`;
+              cityDiv.value = `${citizens[i].id}`;
               cityDiv.innerHTML = `
                             ${citizens[i].alternativeNames[1]}
                           `;
@@ -460,9 +491,11 @@
       };
       getsityzens();
       const pstomatList = document.getElementById("postomat");
-      const getPostomat = async () => {
+      const getPostomat = async (selectedcityid) => {
+        const selectedCity = citizens.find((item) => item.id == selectedcityid);
+        console.log(selectedCity);
         await fetch(
-          "https://api.novapost.com/site/v.1.0/settlements?ids[]=112225&ids[]=114833&ids[]=116260&ids[]=118064&ids[]=121300&ids[]=122635&ids[]=125394&ids[]=128845&ids[]=133451&ids[]=134335"
+          `https://api.novapost.com/site/v.1.0/divisions?bottomLeftLatitude=51.401643&bottomLeftLongitude=31.188113&topRightLatitude=51.580991&topRightLongitude=31.408870&divisionCategories[]=PostBranch&divisionCategories[]=CargoBranch&divisionCategories[]=Postomat&divisionCategories[]=PUDO&settlementIds[]=134335&limit=15&page=1&sort[source]=asc`
         )
           .then((response) => {
             return response.json();
@@ -473,17 +506,16 @@
               let postomatDiv = document.createElement("option");
               postomatDiv.className = "";
               postomatDiv.innerHTML = `
-                            ${postomats[i]}
+                            ${postomats[i].name}
                           `;
               pstomatList.append(postomatDiv);
             }
           });
       };
-      console.log(citizensList);
-      citizensList.addEventListener("click", (e) => {
-        const selectedcity = document.getElementById("city");
-        console.log(e);
-        console.log(selectedcity);
+
+      citizensList.addEventListener("change", (e) => {
+        const selectedcity = document.getElementById("city").value;
+        getPostomat(selectedcity);
       });
     </script>
   </body>
