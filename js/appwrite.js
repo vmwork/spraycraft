@@ -7,12 +7,17 @@ client
 // export const account = new Appwrite.Account(client);
 const databases = new Appwrite.Databases(client);
 const query = new Appwrite.Query(client);
-console.log(Appwrite.Query);
 const result = await databases.listDocuments(
   "680e235f00009982dde6", // databaseId
   "680e26a100097b97eebd", // collectionId
   [Appwrite.Query.limit(100)]
 );
+
+const socialLinks = await databases.listDocuments(
+  "680e235f00009982dde6", // databaseId
+  "681323460016645d21a3" // collectionId
+);
+
 let products = result?.documents;
 let element = document.getElementById("cards");
 
