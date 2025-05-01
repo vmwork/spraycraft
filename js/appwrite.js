@@ -98,20 +98,28 @@ const getFilterTags = () => {
 const filternames = getFilterTags();
 
 let filter = document.getElementById("products-filter");
+let filterDiv = document.getElementById("select-div");
+
 for (let i = 0; i < filternames.length; i++) {
-  let option = document.createElement("option");
+  let option = document.createElement("div");
   option.value = filternames[i];
+  option.className = "filter-option";
   option.innerHTML = filternames[i];
   filter.append(option);
 }
-filter.addEventListener("change", (e) => {
-  if (e.target.value === "Усі") {
+filterDiv.addEventListener("click", (e) => {
+  filter.classList.add("active");
+});
+filter.addEventListener("click", (e) => {
+  console.log(e.target.innerText);
+  if (e.target.innerText === "Усі") {
     products = result?.documents;
   }
-  if (e.target.value !== "Усі") {
+  if (e.target.innerText !== "Усі") {
     products = result?.documents.filter((product) => {
       return product.product_name.includes(e.target.value);
     });
   }
+  filter.classList.remove("active");
   reactiveUpdateFilter();
 });

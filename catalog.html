@@ -63,6 +63,8 @@
     <link href="css/StyleSheet.css" rel="stylesheet" />
 
     <link href="css/media.css" rel="stylesheet" />
+    <link href="css/customSelect.css" rel="stylesheet" />
+    
     <link rel="shortcut icon" href="img/favicon.ico" />
   </head>
   <body>
@@ -174,15 +176,32 @@
         <section class="service product-card-wrapper">
           <div class="container">
           <h2 class="title title-one">Магазин <span>Spray Craft</span></h2>
+          <div class="custom-filter-products">Фільтр:
+            <div class="div-select" id="select-div">
+              <div>Усі</div> 
+              <div>        <img
+                
+                src="img/down-arrow.png"
+                alt="Alternate Text"
+              />
+            </div> 
+            </div>
+            <div >
+            </div>
+            <div id="products-filter" class="div-option">
+              <div class="filter-option">Усі</div>
+            </div>
+          </div>
 
-          <div class="filter-products">
+
+          <!-- <div class="filter-products">
             <label for="name">Фільтр:</label>
 
             <select id="products-filter">
               <option>Усі</option>
            
             </select>
-          </div>
+          </div> -->
           </div>
           <div id="cards" class="product-card-list anim_top"></div>
         </div>
