@@ -95,6 +95,15 @@ button {
   top: 0;
   transition: 0.5s;
 }
+.mt-80 {
+  margin-top: 80px;
+}
+.mb-80 {
+  margin-bottom: 80px;
+}
+.mt-40 {
+  margin-top: 40px;
+}
 .menu_mob span:nth-child(2) {
   top: 11px;
 }
@@ -1022,6 +1031,9 @@ button {
   font-size: 20px;
   line-height: 147%;
   color: #000;
+}
+.service-product {
+  font-size: 30px;
 }
 .product-text:not(:last-child) {
   margin-bottom: 17px;

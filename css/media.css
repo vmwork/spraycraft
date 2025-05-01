@@ -57,6 +57,12 @@
     font-size: 18px;
     line-height: 140%;
   }
+  .service-product {
+    font-size: 30px;
+  }
+  .service-product b {
+    font-size: 30px;
+  }
   .header-logo {
     width: 226px;
     padding: 0;
@@ -264,6 +270,9 @@
   .product-text {
     font-size: 16px;
     line-height: 140%;
+  }
+  .service-product b {
+    font-size: 30px;
   }
   .text {
     font-size: 17px;
