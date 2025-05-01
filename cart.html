@@ -161,96 +161,109 @@
 
     <main>
       <div class="checout-wrapper">
-        <section class="card">
-          <div class="card-items">
-            <div id="card-items"></div>
-            <div id="card-total-price" class="total-price"></div>
-          </div>
-          <div class="user-form-wrapper">
-            <div class="user-form">
-              <div class="">
-                <div class="flex user-form-item">
-                  <label for="name">ПІБ</label>
-                  <input class="userName" type="text" placeholder="Ваше ім'я" />
+        <section>
+          <div class="container mt-80 mb-80">
+            <h2 class="title title-one">Замовлення <span>Spray Craft</span></h2>
+            <div class="card anim_top">
+              <div class="card-items">
+                <div class="clear-cert-button" id="clear-button">
+                  <button>Очистити Корзину</button>
                 </div>
-                <div class="flex user-form-item">
-                  <label for="name">Телефон</label>
-                  <input
-                    class="userPhone"
-                    type="text"
-                    name="tel"
-                    placeholder="Номер телефона"
-                    required
-                    maxlength="13"
-                  />
+
+                <div id="card-items"></div>
+                <div id="card-total-price" class="total-price"></div>
+              </div>
+              <div class="user-form-wrapper">
+                <div class="user-form">
+                  <div style="width: 100%">
+                    <div class="flex user-form-item">
+                      <label for="name">ПІБ</label>
+                      <input
+                        class="userName"
+                        type="text"
+                        placeholder="Ваше ім'я"
+                      />
+                    </div>
+                    <div class="flex user-form-item">
+                      <label for="name">Телефон</label>
+                      <input
+                        class="userPhone"
+                        type="text"
+                        name="tel"
+                        placeholder="Номер телефона"
+                        required
+                        maxlength="13"
+                      />
+                    </div>
+                    <div class="flex user-form-item">
+                      <label for="name">Електронна пошта</label>
+                      <input
+                        class="userEmail"
+                        type="text"
+                        placeholder="Ваша пошта"
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div class="flex user-form-item">
-                  <label for="name">Електронна пошта</label>
-                  <input
-                    class="userEmail"
-                    type="text"
-                    placeholder="Ваша пошта"
-                  />
+                <div style="width: 100%">
+                  <div class="delivery user-form-item">
+                    <label for="name">Область</label>
+
+                    <select id="obl">
+                      <option>Ваша Область</option>
+                    </select>
+                  </div>
+                  <div class="delivery user-form-item">
+                    <label for="name">Місто</label>
+
+                    <select id="city">
+                      <option>Ваше Місто</option>
+                    </select>
+                  </div>
+
+                  <div class="delivery user-form-item">
+                    <label>Спосіб доставки</label>
+                    <select id="delivery">
+                      <option>Нова Пошта</option>
+                    </select>
+                  </div>
+
+                  <div class="delivery user-form-item">
+                    <div class="flex user-form-item">
+                      <label for="name">Відділення</label>
+                      <input
+                        id="postomat"
+                        class="userEmail"
+                        type="text"
+                        placeholder="Введіть відділення"
+                      />
+                    </div>
+                  </div>
+                  <div class="delivery user-form-item">
+                    <label>Оплата</label>
+                    <select class="paymant">
+                      <option>Накладний платіж</option>
+                      <option>Безготівкова</option>
+                    </select>
+                  </div>
+                  <div class="delivery user-form-item">
+                    <div class="flex user-form-item">
+                      <label for="name">Коментар</label>
+                      <textarea
+                        id="comment"
+                        class="userComent"
+                        type="texarea"
+                        placeholder="Введіть коментар"
+                      ></textarea>
+                    </div>
+                  </div>
                 </div>
+
+                <button id="sendmessage" class="btn-finaly">
+                  Оформити замовлення
+                </button>
               </div>
             </div>
-            <div class="">
-              <div class="delivery user-form-item">
-                <label for="name">Область</label>
-
-                <select id="obl">
-                  <option>Ваша Область</option>
-                </select>
-              </div>
-              <div class="delivery user-form-item">
-                <label for="name">Місто</label>
-
-                <select id="city">
-                  <option>Ваше Місто</option>
-                </select>
-              </div>
-
-              <div class="delivery user-form-item">
-                <label>Спосіб доставки</label>
-                <select id="delivery">
-                  <option>Нова Пошта</option>
-                </select>
-              </div>
-
-              <div class="delivery user-form-item">
-                <div class="flex user-form-item">
-                  <label for="name">Відділення</label>
-                  <input
-                    id="postomat"
-                    class="userEmail"
-                    type="text"
-                    placeholder="Введіть відділення"
-                  />
-                </div>
-              </div>
-              <div class="delivery user-form-item">
-                <label>Оплата</label>
-                <select class="paymant">
-                  <option>Накладний платіж</option>
-                  <option>Безготівкова</option>
-                </select>
-              </div>
-              <div class="delivery user-form-item">
-                <div class="flex user-form-item">
-                  <label for="name">Коментар</label>
-                  <textarea
-                    id="comment"
-                    class="userComent"
-                    type="texarea"
-                    placeholder="Введіть коментар"
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-
-            <button id="sendmessage" class="btn-finaly">
-              Оформити замовлення
-            </button>
           </div>
         </section>
       </div>
@@ -339,7 +352,7 @@
     <script src="assets/animate/animate-css.js"></script>
 
     <!-- build:js js/main.js -->
-    <!-- <script src="js/JavaScript.js"></script> -->
+    <script src="js/JavaScript.js"></script>
     <!-- <script src="js/appwrite.js"></script> -->
     <script src="js/cartState.js"></script>
     <script src="js/tgService.js"></script>
@@ -357,6 +370,14 @@
       const setTotalPrice = () => {
         const totalPrice = document.getElementById("card-total-price");
         let total = 0;
+        console.log(cart.length);
+        if (cart.length === 0) {
+          totalPrice.innerHTML = `<dv class="total-price">
+          <p>Повна ціна : </p>
+          <p>0 грн</p>
+        </div>`;
+          return;
+        }
         cart.forEach((item) => {
           total += item.price * item.product_count_to_buy;
         });
@@ -383,6 +404,7 @@
           </div>
           `;
           productsCard.append(div);
+          setTotalPrice();
         }
         for (let i = 0; i < cart.length; i++) {
           div = document.createElement("div");
@@ -574,6 +596,14 @@
         };
         return userdata;
       };
+
+      const clearButton = document.getElementById("clear-button");
+      clearButton.addEventListener("click", () => {
+        localStorage.removeItem("cart");
+        cart = [];
+        reactiveUpdateDom();
+      });
+
       const openSenksModal = () => {
         $(".modal-block").hide();
         $(".modal").css("display", "flex");

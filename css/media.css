@@ -914,7 +914,7 @@
 .user-form-wrapper {
   border-left: 1px solid #99c455;
   padding-left: 20px;
-  min-width: 375px;
+  min-width: 575px;
 }
 .user-form {
   display: flex;
@@ -1008,14 +1008,73 @@
 .title-card {
   margin-top: 10px;
 }
+.user-form-item input,
+.user-form-item select,
+.user-form-item textarea {
+  width: 90%;
+}
+.user-form-item select {
+  margin-left: 20px;
+}
+.user-form-item label {
+  width: 90%;
+}
+.btn-finaly {
+  width: 100%;
+}
+.clear-cert-button {
+  display: flex;
+  justify-content: flex-end;
+}
+.clear-cert-button button {
+  background-color: transparent;
+  padding: 10px;
+  border: 2px solid #99c455;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.clear-cert-button button:hover {
+  background-color: #99c455;
+  color: #ffffff;
+}
+@media (max-width: 1148px) {
+  .user-form-wrapper {
+    min-width: 375px;
+  }
+}
 @media (max-width: 1148px) {
   .user-form-wrapper {
     max-width: 400px;
+    .user-form-item input,
+    .user-form-item select,
+    .user-form-item textarea {
+      width: 90%;
+    }
+    .user-form-item label {
+      width: 90%;
+    }
+    .btn-finaly {
+      width: 100%;
+    }
   }
 }
 @media (max-width: 955px) {
   .user-form-wrapper {
-    max-width: 400px;
+    max-width: 456px;
+    min-width: 456px;
+  }
+  .user-form-item input,
+  .user-form-item select,
+  .user-form-item textarea {
+    width: 90%;
+  }
+  .user-form-item label {
+    width: 90%;
+  }
+  .btn-finaly {
+    width: 100%;
   }
 }
 @media (max-width: 767px) {
@@ -1037,14 +1096,15 @@
     flex-direction: column;
   }
   .user-form-item input,
-  .user-form-item select {
+  .user-form-item select,
+  .user-form-item textarea {
     width: 90%;
   }
   .user-form-item label {
     width: 90%;
   }
   .btn-finaly {
-    width: 90%;
+    width: 100%;
   }
   .products-card {
     height: auto;

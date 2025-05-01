@@ -77,14 +77,40 @@ const reactiveUpdateFilter = () => {
 };
 // console.log(result?.documents);
 reactiveUpdateFilter();
+
+const getFilterTags = () => {
+  const tags = [];
+  products.forEach((product) => {
+    if (!tags.includes(product.product_name)) {
+      let pretag =
+        product.product_name.split(" ")[0] +
+        " " +
+        product.product_name.split(" ")[1];
+      tags.push(pretag);
+    }
+  });
+  const filtredTTags = tags.filter(
+    (it, index) => index === tags.indexOf((it = it.trim()))
+  );
+  console.log(filtredTTags);
+  return filtredTTags;
+};
+const filternames = getFilterTags();
+
 let filter = document.getElementById("products-filter");
+for (let i = 0; i < filternames.length; i++) {
+  let option = document.createElement("option");
+  option.value = filternames[i];
+  option.innerHTML = filternames[i];
+  filter.append(option);
+}
 filter.addEventListener("change", (e) => {
-  console.log(e.target.value);
   if (e.target.value === "Усі") {
     products = result?.documents;
-  } else {
+  }
+  if (e.target.value !== "Усі") {
     products = result?.documents.filter((product) => {
-      return product.product_name === e.target.value;
+      return product.product_name.includes(e.target.value);
     });
   }
   reactiveUpdateFilter();
