@@ -973,7 +973,7 @@
 .delivery input,
 .delivery textarea,
 .filter-products select {
-  width: 100%;
+  width: 250px;
   padding: 10px;
   margin: 5px;
   border: 1px solid #99c455;

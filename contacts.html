@@ -188,92 +188,78 @@
     </header>
 
     <main>
-      <section class="service" id="service">
+      <section class="about" id="about">
         <div class="container">
-          <h2 class="title title-one">Послуги <span>Spray Craft</span></h2>
+          <h2 class="title">Про <span>нас</span></h2>
+          <div class="about-wrap">
+            <div class="about-photo anim_top">
+              <img src="img/about.png" alt="Alternate Text" />
+            </div>
+            <div class="about-content">
+              <p class="about-top-text about-text anim_down">
+                У світі, де інновації об'єднуються з сільським господарством,
+                компанія Spray Craft виступає в ролі переможця. Ми - молода та
+                динамічна команда, що забирає сільське господарство на новий
+                рівень, надаючи послуги з обприскування полів за допомогою
+                передових агродронів.
+              </p>
+              <a class="read-more-btn">Читати більше</a>
+              <div class="hide-mobile">
+                <p class="about-text anim_down">
+                  У Spray Craft ми ставимо своїм завданням змінити обличчя
+                  сільського господарства, роблячи його більш ефективним,
+                  екологічно чистим та пристосованим до вимог сучасності. Ми
+                  віримо, що перетворення сільського господарства можливе
+                  завдяки інтеграції передових технологій.
+                </p>
+                <p class="about-text anim_down">
+                  Наша команда впевнена, що майбутнє сільського господарства
+                  полягає в небі. Наші агродрони відкривають нові можливості для
+                  фермерів, забезпечуючи їх інноваційними та ефективними
+                  рішеннями.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <div class="service-wrap">
-            <div class="service-block anim_top">
-              <div class="service-photo">
-                <img src="img/service-photo-1.png" alt="Alternate Text" />
-              </div>
-              <div class="service-content">
-                <h6 class="service-title">Врятуємо врожай</h6>
-                <h4>Внесення ЗЗР</h4>
-                <p>
-                  Внесення засобів захисту рослин агродронами із максимальною
-                  ефективністю та економічністю. Шансів у хвороб і шкідників
-                  немає.
-                </p>
-              </div>
-              <div class="service-btns anim_down">
-                <a class="btn open-modal" data-openModal="modal-form"
-                  >Замовити</a
-                >
-                <a href="entering.html" class="btn-border">Детальніше</a>
-              </div>
-            </div>
-            <div class="service-block anim_top">
-              <div class="service-photo">
-                <img src="img/service-photo-2.png" alt="Alternate Text" />
-              </div>
-              <div class="service-content">
-                <h6 class="service-title">Ідеальний результат</h6>
-                <h4>Десикація</h4>
-                <p>
-                  Десикація забезпечить рівномірне і більш швидке дозрівання
-                  врожаю. Допоможе мінімізувати вплив поганої погоди на
-                  кількість та якість зібраного врожаю.
-                </p>
-              </div>
-              <div class="service-btns anim_down">
-                <a class="btn open-modal" data-openModal="modal-form"
-                  >Замовити</a
-                >
-                <a href="desiccation.html" class="btn-border">Детальніше</a>
-              </div>
-            </div>
-            <div class="service-block anim_top">
-              <div class="service-photo">
-                <img src="img/service-photo-3.png" alt="Alternate Text" />
-              </div>
-              <div class="service-content">
-                <h6 class="service-title">Без шкідників</h6>
-                <h4>Внесення трихограми</h4>
-                <p>
-                  Тихограма - це комахи, яких розмножують у лабораторіях. Свої
-                  яйця трихограма відкладає всередену яєць шкідливих комах,
-                  таким чином зменшуючи іхню популяцію.
-                </p>
-              </div>
-              <div class="service-btns anim_down">
-                <a class="btn open-modal" data-openModal="modal-form"
-                  >Замовити</a
-                >
-                <a href="trichograms.html" class="btn-border">Детальніше</a>
-              </div>
-            </div>
-            <div class="service-block anim_top">
-              <div class="service-photo">
-                <img src="img/servises.jpg" alt="Alternate Text" />
-              </div>
-              <div class="service-content">
-                <h6 class="service-title">Збільшимо врожай</h6>
-                <h4>Диференційне внесення дроном</h4>
-                <p>
-                  Пропонуємо повний спектр послуг: діагностика та виявлення
-                  несправностей, заміна пошкоджених комплектуючих.
-                </p>
-              </div>
-              <div class="service-btns anim_down">
-                <a class="btn open-modal" data-openModal="modal-form"
-                  >Замовити</a
-                >
-                <a href="rare-fertilizers.html" class="btn-border"
-                  >Детальніше</a
-                >
-              </div>
-            </div>
+      <section class="contacts">
+        <div class="container">
+          <div class="contacts-block">
+            <h2><span>БАЖАЄТЕ ОТРИМАТИ</span> ШВИДКИЙ РОЗРАХУНОК ВАРТОСТІ?</h2>
+            <p>
+              Заповніть Ваші контактні дані та наш консультант зв’яжеться з Вами
+            </p>
+
+            <form
+              class="form anim_down telegram-form"
+              action="javascript:void(null);"
+              method="post"
+              id="form-2"
+              onsubmit="sendForm('form-2')"
+            >
+              <input
+                class="input"
+                type="text"
+                name="name"
+                placeholder="Ваше Ім’я"
+                required
+              />
+              <input
+                class="input"
+                type="text"
+                name="phone"
+                placeholder="Ваш номер телефону"
+                required
+              />
+              <input type="hidden" name="subject" value="Новая заявка" />
+              <button class="btn-black">Відправити</button>
+            </form>
+          </div>
+          <div class="contacts-box anim_down">
+            <h6>Або телефонуйте</h6>
+            <a href="tel:0997596245">+380 (99) 759 62 45</a>
           </div>
         </div>
       </section>
