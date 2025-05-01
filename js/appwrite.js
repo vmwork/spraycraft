@@ -4,12 +4,14 @@ client
   .setEndpoint("https://fra.cloud.appwrite.io/v1") // Your API Endpoint
   .setProject("680e20d30008c65bc1d1"); // Your project ID
 
-export const account = new Appwrite.Account(client);
-export const databases = new Appwrite.Databases(client);
-
+// export const account = new Appwrite.Account(client);
+const databases = new Appwrite.Databases(client);
+const query = new Appwrite.Query(client);
+console.log(Appwrite.Query);
 const result = await databases.listDocuments(
   "680e235f00009982dde6", // databaseId
-  "680e26a100097b97eebd" // collectionId
+  "680e26a100097b97eebd", // collectionId
+  [Appwrite.Query.limit(100)]
 );
 let products = result?.documents;
 let element = document.getElementById("cards");
@@ -68,7 +70,7 @@ const reactiveUpdateFilter = () => {
     }
   }
 };
-
+// console.log(result?.documents);
 reactiveUpdateFilter();
 let filter = document.getElementById("products-filter");
 filter.addEventListener("change", (e) => {

@@ -166,12 +166,11 @@
             <div id="card-items"></div>
             <div id="card-total-price" class="total-price"></div>
           </div>
-
           <div class="user-form-wrapper">
             <div class="user-form">
               <div class="">
                 <div class="flex user-form-item">
-                  <label for="name">ПІП</label>
+                  <label for="name">ПІБ</label>
                   <input class="userName" type="text" placeholder="Ваше ім'я" />
                 </div>
                 <div class="flex user-form-item">
@@ -245,14 +244,13 @@
                     type="texarea"
                     placeholder="Введіть коментар"
                   ></textarea>
-                  </div>
                 </div>
               </div>
-
-              <button id="sendmessage" class="btn-finaly">
-                Оформити замовлення
-              </button>
             </div>
+
+            <button id="sendmessage" class="btn-finaly">
+              Оформити замовлення
+            </button>
           </div>
         </section>
       </div>
@@ -512,10 +510,12 @@
                           `;
           cityList.append(postomatDiv);
         }
+        cityList.value = "Ваше Місто";
       };
 
       citizensList.addEventListener("change", (e) => {
         const selectedcity = document.getElementById("obl").value;
+        console.log("cahnge list"); // изменили область.
         getPostomat(selectedcity);
       });
 
@@ -606,35 +606,35 @@
         }
       });
 
-        // toggle phones
-  $(".phones-mobile").click(function () {
-    $(".header-phones-list").toggleClass("active");
-  });
+      // toggle phones
+      $(".phones-mobile").click(function () {
+        $(".header-phones-list").toggleClass("active");
+      });
 
-  $("main").click(function () {
-    $(".header-phones-list").removeClass("active");
-  });
-  // show more
-  $(".read-more-btn").click(function () {
-    $(".read-more-btn").hide();
-    $(".hide-mobile").show();
-    $(".last-text").addClass("active");
-  });
-    /*mob_menu*/
-    $(".menu_mob").click(function () {
-      $(".menu_mob").toggleClass("active_drop_men");
-      $(".header-menu").toggleClass("active");
-    });
-  
-    $(".menu-before").click(function () {
-      $(".menu_mob").toggleClass("active_drop_men");
-      $(".header-menu").toggleClass("active");
-    });
-  
-    $(".go-to").click(function () {
-      $(".menu_mob").toggleClass("active_drop_men");
-      $(".header-menu").toggleClass("active");
-    });
+      $("main").click(function () {
+        $(".header-phones-list").removeClass("active");
+      });
+      // show more
+      $(".read-more-btn").click(function () {
+        $(".read-more-btn").hide();
+        $(".hide-mobile").show();
+        $(".last-text").addClass("active");
+      });
+      /*mob_menu*/
+      $(".menu_mob").click(function () {
+        $(".menu_mob").toggleClass("active_drop_men");
+        $(".header-menu").toggleClass("active");
+      });
+
+      $(".menu-before").click(function () {
+        $(".menu_mob").toggleClass("active_drop_men");
+        $(".header-menu").toggleClass("active");
+      });
+
+      $(".go-to").click(function () {
+        $(".menu_mob").toggleClass("active_drop_men");
+        $(".header-menu").toggleClass("active");
+      });
     </script>
   </body>
 </html>
