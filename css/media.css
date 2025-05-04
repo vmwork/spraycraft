@@ -1084,7 +1084,7 @@
 @media (max-width: 955px) {
   .user-form-wrapper {
     max-width: 456px;
-    min-width: 456px;
+    min-width: 375px;
   }
   .user-form-item input,
   .user-form-item select,

@@ -419,10 +419,12 @@
       const totalPrice = document.getElementById("card-total-price");
       let total = 0;
       const setTotalPrice = () => {
+        total = 0;
         if (cart.length === 0) {
           totalPrice.innerHTML = ``;
           return;
         }
+
         cart.forEach((item) => {
           total += item.price * item.product_count_to_buy;
         });
