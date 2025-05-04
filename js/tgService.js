@@ -36,9 +36,10 @@ const sendMessageToTg = async (message, userData) => {
 
       Місто: ${userData.city},
 
-      Спосіб доставки: ${userData.delivery},
+      Спосіб доставки: ${userData.delivery.trim()},
 
-      Відділення: ${userData.postomat},
+      Відділення: 
+      ${userData.postomat},
 
       Оплата : ${userData.payment},
 
