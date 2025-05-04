@@ -6,15 +6,12 @@ const sendMessageToTg = async (message, userData) => {
   let newMessage = [];
   message.forEach((item) => {
     const text = `
-        Назва товару: 
-        ${item.product_name},
-
-        Артикул: ${item.artical},
-
-        Кількість: ${item.product_count_to_buy},
-        Ціна: ${item.price},
-        ____________________
-        `;
+Назва товару: 
+${item.product_name.trim()}
+Артикул: ${item.artical}
+Кількість: ${item.product_count_to_buy}
+Ціна: ${item.price}
+____________________`;
     newMessage.push(text);
   });
   try {
@@ -27,27 +24,18 @@ const sendMessageToTg = async (message, userData) => {
         chat_id: TELEGRAM_CHAT_ID,
         text: `
       📩 Вам нова заявка:
-
 Имя: ${userData.name}
-
 Телефон: ${userData.phone}
-
 Почта: ${userData.email}
-
 Місто: ${userData.city}
-
 Спосіб доставки: ${userData.delivery.trim()}
-
 Відділення: 
-${userData.postomat},
-
-Оплата : ${userData.payment},
-
-Коментар : ${userData.comment},
-
+${userData.postomat}
+Оплата : ${userData.payment}
+Коментар : ${userData.comment}
 Товари до замовлення:
 ${newMessage}
-Повна ціна : ${userData.totalPrice},`,
+Повна ціна : ${userData.totalPrice}`,
       }),
     });
     console.log(response);
