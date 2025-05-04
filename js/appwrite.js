@@ -102,13 +102,15 @@ const getFilterTags = () => {
         product.product_name.split(" ")[0] +
         " " +
         product.product_name.split(" ")[1];
-      tags.push(pretag);
+      if (!pretag.includes(",")) {
+        tags.push(pretag);
+      }
     }
   });
   const filtredTTags = tags.filter(
     (it, index) => index === tags.indexOf((it = it.trim()))
   );
-  console.log(filtredTTags);
+
   return filtredTTags;
 };
 const filternames = getFilterTags();
