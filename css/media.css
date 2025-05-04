@@ -786,6 +786,8 @@
   background-color: transparent;
   cursor: pointer;
   position: relative;
+  min-width: 25px;
+  min-height: 25px;
   top: -30px;
   right: -10px;
 }
