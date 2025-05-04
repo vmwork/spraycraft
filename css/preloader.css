@@ -32,6 +32,9 @@
   right: 0;
   margin: auto;
 }
+.hidden {
+  display: none;
+}
 
 .path {
   stroke-dasharray: 1, 200;
