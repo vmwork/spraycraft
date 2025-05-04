@@ -63,6 +63,7 @@
     <link href="css/StyleSheet.css" rel="stylesheet" />
     <link href="css/media.css" rel="stylesheet" />
     <link href="css/customSelect.css" rel="stylesheet" />
+    <link href="css/preloader.css" rel="stylesheet" />
     <link rel="shortcut icon" href="img/favicon.ico" />
   </head>
   <body>
@@ -220,6 +221,17 @@
                             autocomplete="off"
                           />
                           <div>
+                            <!-- <svg class="circular" viewBox="25 25 50 50">
+                              <circle
+                                class="path"
+                                cx="50"
+                                cy="50"
+                                r="20"
+                                fill="none"
+                                stroke-width="2"
+                                stroke-miterlimit="10"
+                              />
+                            </svg> -->
                             <img
                               src="img/down-arrow.png"
                               alt="Alternate Text"
@@ -719,9 +731,6 @@
           return false;
         } else if (phone === "") {
           alert("Введіть ваш телефон");
-          return false;
-        } else if (email === "") {
-          alert("Введіть вашу електронну пошту");
           return false;
         } else if (shoosenCity === "Ваше Місто") {
           alert("Виберіть ваше місто");

@@ -28,28 +28,26 @@ const sendMessageToTg = async (message, userData) => {
         text: `
       📩 Вам нова заявка:
 
-      Имя: ${userData.name},
+Имя: ${userData.name}
 
-      Телефон: ${userData.phone},
+Телефон: ${userData.phone}
 
-      Почта: ${userData.email},
+Почта: ${userData.email}
 
-      Місто: ${userData.city},
+Місто: ${userData.city}
 
-      Спосіб доставки: ${userData.delivery.trim()},
+Спосіб доставки: ${userData.delivery.trim()}
 
-      Відділення: 
-      ${userData.postomat},
+Відділення: 
+${userData.postomat},
 
-      Оплата : ${userData.payment},
+Оплата : ${userData.payment},
 
-      Коментар : ${userData.comment},
+Коментар : ${userData.comment},
 
-      Товари до замовлення:
-      ${newMessage}
-      Повна ціна : ${userData.totalPrice},
-      
-      `,
+Товари до замовлення:
+${newMessage}
+Повна ціна : ${userData.totalPrice},`,
       }),
     });
     console.log(response);

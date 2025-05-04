@@ -979,6 +979,7 @@
 }
 .delivery,
 .filter-products {
+  position: relative;
   margin-top: 20px;
   font-size: 20px;
 }
