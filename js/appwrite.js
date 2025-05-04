@@ -35,20 +35,20 @@ const reactiveUpdateFilter = () => {
                 <div class="product-card-price">
                   <p>${products[i].price} грн</p>
       
-                <button  class="product-card-buttons">   <img class="img-button" name="${products[i].$id}" src="/img/add-to-cart.png" alt="" width="25" /></button>   
+                <button id="${products[i].$id}"  class="product-card-buttons">   <img class="img-button" id="${products[i].$id}" src="/img/add-to-cart.png" alt="" width="25" /> Купити</button>   
                 </div>`;
 
     element.append(div);
 
     if (i === products.length - 1) {
-      const buttons = document.querySelectorAll(".img-button");
+      const buttons = document.querySelectorAll(".product-card-buttons");
       buttons.forEach((button) => {
         button.addEventListener("click", (e) => {
           const cart = getCartState();
           let productToCard = [];
           const getProduct = () => {
             products.forEach((product) => {
-              if (product.$id === e.target.name) {
+              if (product.$id === e.target.id) {
                 if (product.product_count_to_buy === null) {
                   product.product_count_to_buy = 1;
                 } else {
@@ -65,28 +65,14 @@ const reactiveUpdateFilter = () => {
               }
             });
             if (cart.length === 0 || !coincidence) {
+              let buttonInCard = document.getElementById(e.target.id);
+              buttonInCard.innerHTML =
+                '<img class="img-button" id="${products[i].$id}" src="/img/ok.webp" alt="" width="25" /> У кошику';
               cart.push(productToCard);
             }
             setCartState(cart);
           };
           getProduct();
-
-          const img = e.target
-            .closest(".product-card")
-            .querySelector("img")
-            .cloneNode(true);
-          img.classList.add("shake");
-          img.style.position = "fixed";
-          img.style.top = "250px";
-          img.style.right = "10px";
-          img.style.zIndex = "1000";
-          img.style.width = "150px";
-          img.style.height = "150px";
-          img.style.transition = "0.5s";
-          document.body.appendChild(img);
-          setTimeout(() => {
-            img.remove();
-          }, 1000);
         });
       });
     }

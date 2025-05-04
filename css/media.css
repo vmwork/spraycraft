@@ -774,7 +774,7 @@
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 15px;
   margin-bottom: 20px;
@@ -795,7 +795,9 @@
   border: none;
   background-color: transparent;
   border: 1px solid transparent;
-
+  display: flex;
+  align-items: center;
+  gap: 10px;
   /* padding: 5px; */
   border-radius: 4px;
   margin-top: 10px;
@@ -805,7 +807,7 @@
   border: 1px solid #99c455;
 }
 .product-card-buttons img {
-  margin: 5px;
+  /* margin: 5px; */
 }
 
 .product-card-artical {
