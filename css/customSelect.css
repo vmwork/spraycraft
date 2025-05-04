@@ -42,3 +42,35 @@
 .div-option.active {
   display: block;
 }
+.user-form-item .custom-filter-products {
+  flex-direction: column;
+  align-items: flex-start;
+  width: 90%;
+}
+.user-form-item .custom-filter-products .div-select {
+  margin-top: 10px;
+  width: 100%;
+  margin-left: 30px;
+  background-color: #fff !important;
+}
+.user-form-item .custom-filter-products .div-option {
+  left: 0px;
+  top: 75px;
+  left: 10px;
+  margin-left: 20px;
+  background-color: #fff !important;
+  width: 100%;
+}
+#city-input,
+#post-input {
+  border: none;
+  outline: none;
+  background-color: #fff !important;
+}
+.div-option {
+  max-height: 500px;
+  overflow-y: auto;
+}
+input:-internal-autofill-selected {
+  background-color: #fff !important;
+}

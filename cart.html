@@ -61,8 +61,8 @@
     <link href="assets/animate/animate.css" rel="stylesheet" />
     <link href="css/fonts.css" rel="stylesheet" />
     <link href="css/StyleSheet.css" rel="stylesheet" />
-
     <link href="css/media.css" rel="stylesheet" />
+    <link href="css/customSelect.css" rel="stylesheet" />
     <link rel="shortcut icon" href="img/favicon.ico" />
   </head>
   <body>
@@ -166,9 +166,9 @@
             <h2 class="title title-one">Замовлення <span>Spray Craft</span></h2>
             <div class="card anim_top">
               <div class="card-items">
-                <div class="clear-cert-button" id="clear-button">
+                <!-- <div class="clear-cert-button" id="clear-button">
                   <button>Очистити Корзину</button>
-                </div>
+                </div> -->
 
                 <div id="card-items"></div>
                 <div id="card-total-price" class="total-price"></div>
@@ -207,20 +207,26 @@
                 </div>
                 <div style="width: 100%">
                   <div class="delivery user-form-item">
-                    <label for="name">Область</label>
-
-                    <select id="obl">
-                      <option>Ваша Область</option>
-                    </select>
+                    <div class="">
+                      <div class="custom-filter-products">
+                        Ваше місто
+                        <div class="div-select" id="select-div">
+                          <input
+                            id="city-input"
+                            placeholder="Для пошуку міста введіть перші літери"
+                          />
+                          <div>
+                            <img
+                              src="img/down-arrow.png"
+                              alt="Alternate Text"
+                            />
+                          </div>
+                        </div>
+                        <div></div>
+                        <div id="products-filter" class="div-option"></div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="delivery user-form-item">
-                    <label for="name">Місто</label>
-
-                    <select id="city">
-                      <option>Ваше Місто</option>
-                    </select>
-                  </div>
-
                   <div class="delivery user-form-item">
                     <label>Спосіб доставки</label>
                     <select id="delivery">
@@ -229,14 +235,24 @@
                   </div>
 
                   <div class="delivery user-form-item">
-                    <div class="flex user-form-item">
-                      <label for="name">Відділення</label>
-                      <input
-                        id="postomat"
-                        class="userEmail"
-                        type="text"
-                        placeholder="Введіть відділення"
-                      />
+                    <div class="">
+                      <div class="custom-filter-products">
+                        Ваше відділення
+                        <div class="div-select" id="select-div-post">
+                          <input
+                            id="post-input"
+                            placeholder="Для пошуку міста введіть перші літери"
+                          />
+                          <div>
+                            <img
+                              src="img/down-arrow.png"
+                              alt="Alternate Text"
+                            />
+                          </div>
+                        </div>
+                        <div></div>
+                        <div id="post-filter" class="div-option"></div>
+                      </div>
                     </div>
                   </div>
                   <div class="delivery user-form-item">
@@ -370,12 +386,9 @@
       const setTotalPrice = () => {
         const totalPrice = document.getElementById("card-total-price");
         let total = 0;
-        console.log(cart.length);
+
         if (cart.length === 0) {
-          totalPrice.innerHTML = `<dv class="total-price">
-          <p>Повна ціна : </p>
-          <p>0 грн</p>
-        </div>`;
+          totalPrice.innerHTML = ``;
           return;
         }
         cart.forEach((item) => {
@@ -498,47 +511,118 @@
       let citizens = [];
       let city = [];
       const citizensList = document.getElementById("obl");
-      const getsityzens = async () => {
-        await fetch("./assets/citizen/sitizen.json")
+      const optionsCytizen = {
+        apiKey: "845a541564f8f5fc1361e79827e72768",
+        modelName: "AddressGeneral",
+        calledMethod: "getSettlementAreas",
+        methodProperties: {},
+      };
+      const cityList = document.getElementById("products-filter");
+      const searchCity = async (data) => {
+        const searchOptions = {
+          apiKey: "845a541564f8f5fc1361e79827e72768",
+          modelName: "AddressGeneral",
+          calledMethod: "searchSettlements",
+          methodProperties: {
+            CityName: data,
+            Limit: "150",
+            Page: "1",
+          },
+        };
+        await fetch("https://api.novaposhta.ua/v2.0/json/", {
+          method: "POST",
+          body: JSON.stringify(searchOptions),
+        })
           .then((response) => {
             return response.json();
           })
           .then((data) => {
-            citizens = data;
+            citizens = data.data[0].Addresses;
 
+            while (cityList.firstChild) {
+              cityList.removeChild(cityList.firstChild);
+            }
             for (let i = 0; i < citizens.length; i++) {
-              let cityDiv = document.createElement("option");
-              cityDiv.value = `${citizens[i].name}`;
-              cityDiv.innerHTML = `
-                            ${citizens[i].name}
-                          `;
-              citizensList.append(cityDiv);
+              let option = document.createElement("div");
+              option.value = citizens[i].Description;
+              option.className = "filter-option";
+              option.id = citizens[i].DeliveryCity;
+              option.innerHTML = citizens[i].Present;
+              filter.append(option);
             }
           });
       };
-      getsityzens();
-      const cityList = document.getElementById("city");
-      let postomats = [];
-      const getPostomat = (name) => {
-        const selectedCity = citizens.find((item) => item.name == name);
+      const postsList = document.getElementById("post-filter");
 
-        postomats = selectedCity.areas;
+      const searchPosts = async (data) => {
+        let posts = [];
+        const searchOptions = {
+          apiKey: "845a541564f8f5fc1361e79827e72768",
+          modelName: "AddressGeneral",
+          calledMethod: "getWarehouses",
+          methodProperties: {
+            CityRef: data,
+            Page: "1",
+            Limit: "10000",
+            Language: "UA",
+          },
+        };
+        await fetch("https://api.novaposhta.ua/v2.0/json/", {
+          method: "POST",
+          body: JSON.stringify(searchOptions),
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            posts = data.data;
 
-        for (let i = 0; i < postomats.length; i++) {
-          let postomatDiv = document.createElement("option");
-          postomatDiv.className = "";
-          postomatDiv.innerHTML = `
-                            ${postomats[i].name}
-                          `;
-          cityList.append(postomatDiv);
-        }
-        cityList.value = "Ваше Місто";
+            for (let i = 0; i < posts.length; i++) {
+              let option = document.createElement("div");
+
+              option.className = "filter-option";
+              option.innerHTML = posts[i].Description;
+              postsList.append(option);
+            }
+          });
       };
+      let filter = document.getElementById("products-filter");
+      let filterDiv = document.getElementById("select-div");
+      let cityInput = document.getElementById("city-input");
 
-      citizensList.addEventListener("change", (e) => {
-        const selectedcity = document.getElementById("obl").value;
-        console.log("cahnge list"); // изменили область.
-        getPostomat(selectedcity);
+      let postInput = document.getElementById("post-input");
+      let postSlect = document.getElementById("select-div-post");
+      let postFilter = document.getElementById("post-filter");
+
+      postSlect.addEventListener("click", (e) => {
+        postFilter.classList.toggle("active");
+      });
+      filterDiv.addEventListener("click", (e) => {
+        filter.classList.toggle("active");
+      });
+
+      postFilter.addEventListener("click", (e) => {
+        postFilter.classList.remove("active");
+        postInput.name = e.target.id;
+        postInput.value = e.target.innerHTML;
+      });
+
+      filter.addEventListener("click", (e) => {
+        while (postsList.firstChild) {
+          postsList.removeChild(postsList.firstChild);
+        }
+        postInput.value = "";
+        filter.classList.remove("active");
+        cityInput.name = e.target.id;
+        cityInput.value = e.target.innerHTML;
+        // очистить почтоматі
+        searchPosts(cityInput.name);
+      });
+
+      cityInput.addEventListener("input", (e) => {
+        if (e.target.value.length > 3) {
+          searchCity(e.target.value);
+        }
       });
 
       const sendMessageButton = document.getElementById("sendmessage");
@@ -597,13 +681,6 @@
         return userdata;
       };
 
-      const clearButton = document.getElementById("clear-button");
-      clearButton.addEventListener("click", () => {
-        localStorage.removeItem("cart");
-        cart = [];
-        reactiveUpdateDom();
-      });
-
       const openSenksModal = () => {
         $(".modal-block").hide();
         $(".modal").css("display", "flex");
@@ -629,6 +706,7 @@
           }
         });
       };
+
       sendMessageButton.addEventListener("click", () => {
         if (getUserData()) {
           sendMessageToTg(cart, getUserData());

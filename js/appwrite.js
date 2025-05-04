@@ -70,12 +70,28 @@ const reactiveUpdateFilter = () => {
             setCartState(cart);
           };
           getProduct();
+
+          const img = e.target
+            .closest(".product-card")
+            .querySelector("img")
+            .cloneNode(true);
+          img.classList.add("shake");
+          img.style.position = "fixed";
+          img.style.top = "250px";
+          img.style.right = "10px";
+          img.style.zIndex = "1000";
+          img.style.width = "150px";
+          img.style.height = "150px";
+          img.style.transition = "0.5s";
+          document.body.appendChild(img);
+          setTimeout(() => {
+            img.remove();
+          }, 1000);
         });
       });
     }
   }
 };
-// console.log(result?.documents);
 reactiveUpdateFilter();
 
 const getFilterTags = () => {
@@ -99,6 +115,7 @@ const filternames = getFilterTags();
 
 let filter = document.getElementById("products-filter");
 let filterDiv = document.getElementById("select-div");
+let filterPreviw = document.getElementById("filter-option");
 
 for (let i = 0; i < filternames.length; i++) {
   let option = document.createElement("div");
@@ -111,7 +128,6 @@ filterDiv.addEventListener("click", (e) => {
   filter.classList.add("active");
 });
 filter.addEventListener("click", (e) => {
-  console.log(e.target.innerText);
   if (e.target.innerText === "Усі") {
     products = result?.documents;
   }
@@ -120,6 +136,9 @@ filter.addEventListener("click", (e) => {
       return product.product_name.includes(e.target.value);
     });
   }
+  filterPreviw.innerText = e.target.innerText;
+  console.log(e.target.innerText);
+  console.log(filterPreviw);
   filter.classList.remove("active");
   reactiveUpdateFilter();
 });

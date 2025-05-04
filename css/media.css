@@ -764,6 +764,7 @@
   margin-left: 20px;
 }
 .product-card {
+  position: relative;
   width: 320px;
   height: 448px;
   border: 1px solid #99c455;
@@ -987,6 +988,9 @@
   margin: 5px;
   border: 1px solid #99c455;
   border-radius: 4px;
+}
+.div-select {
+  font-size: 14px;
 }
 /* .product-card-list {
   min-height: 500px;

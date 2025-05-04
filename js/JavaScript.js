@@ -56,7 +56,7 @@ $(document).ready(function () {
     var name = "." + $(this).attr("data-openModal");
     $(name).css("display", "block");
   });
-  
+
   $(".close-modal").click(function () {
     $(".modal").hide();
     $(".modal-block").hide();
@@ -154,14 +154,23 @@ function shakeButton() {
   let button = document.querySelector(".btn");
   if (button) {
     button.classList.add("shake");
-
     setTimeout(function () {
       button.classList.remove("shake");
     }, 500);
   }
 }
+function shakeButton2() {
+  let cardBtn = document.querySelector(".card-btn");
+  if (cardBtn) {
+    cardBtn.classList.add("shake");
 
+    setTimeout(function () {
+      cardBtn.classList.remove("shake");
+    }, 500);
+  }
+}
 setInterval(shakeButton, 3000);
+setInterval(shakeButton2, 3000);
 
 function closeTnaksModal() {
   $(".modal").hide();
