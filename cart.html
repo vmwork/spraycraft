@@ -79,7 +79,7 @@
 
     <div class="modal">
       <span class="close-modal close-modal-times">&times;</span>
-      <div class="modal-block modal-form">
+      <div class="modal-block modal-form1">
         <div class="contacts-block">
           <h2>Дякуємо за замовлення!</h2>
           <p>Наш консультант зв’яжеться з Вами</p>
@@ -227,57 +227,89 @@
                       </div>
                     </div>
                   </div>
-                  <div class="delivery user-form-item">
-                    <label>Спосіб доставки</label>
-                    <select id="delivery">
-                      <option>Нова Пошта</option>
-                    </select>
-                  </div>
-
-                  <div class="delivery user-form-item">
-                    <div class="">
-                      <div class="custom-filter-products">
-                        Ваше відділення
-                        <div class="div-select" id="select-div-post">
-                          <input
-                            id="post-input"
-                            placeholder="Для пошуку міста введіть перші літери"
-                          />
-                          <div>
-                            <img
-                              src="img/down-arrow.png"
-                              alt="Alternate Text"
-                            />
+                  <div class="disable-form">
+                    <div class="disable-form-bg" id="second-form"></div>
+                    <div class="delivery user-form-item">
+                      <div class="">
+                        <div class="custom-filter-products">
+                          Спосіб доставки
+                          <div class="div-select" id="select-div-delivery">
+                            <div id="delivety-input">Нова пошта</div>
+                            <div>
+                              <img
+                                src="img/down-arrow.png"
+                                alt="Alternate Text"
+                              />
+                            </div>
+                          </div>
+                          <div></div>
+                          <div id="delivery-filter" class="div-option">
+                            <div class="filter-option">Нова пошта</div>
                           </div>
                         </div>
-                        <div></div>
-                        <div id="post-filter" class="div-option"></div>
+                      </div>
+                    </div>
+
+                    <div class="delivery user-form-item" id="postomat-id">
+                      <div class="">
+                        <div class="custom-filter-products">
+                          Ваше відділення
+                          <div class="div-select" id="select-div-post">
+                            <input
+                              id="post-input"
+                              placeholder="Для пошуку міста введіть перші літери"
+                            />
+                            <div>
+                              <img
+                                src="img/down-arrow.png"
+                                alt="Alternate Text"
+                              />
+                            </div>
+                          </div>
+                          <div></div>
+                          <div id="post-filter" class="div-option"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="delivery user-form-item">
+                      <div class="">
+                        <div class="custom-filter-products">
+                          Оплата
+                          <div class="div-select" id="select-div-pays">
+                            <div id="pays-input">Накладний платіж</div>
+                            <div>
+                              <img
+                                src="img/down-arrow.png"
+                                alt="Alternate Text"
+                              />
+                            </div>
+                          </div>
+                          <div></div>
+                          <div id="pays-filter" class="div-option">
+                            <div class="filter-option">Накладний платіж</div>
+                            <div class="filter-option">Безготівкова</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="delivery user-form-item">
+                      <div class="flex user-form-item">
+                        <label for="name">Коментар</label>
+                        <textarea
+                          id="comment"
+                          class="userComent"
+                          type="texarea"
+                          placeholder="Введіть коментар"
+                        ></textarea>
                       </div>
                     </div>
                   </div>
-                  <div class="delivery user-form-item">
-                    <label>Оплата</label>
-                    <select class="paymant">
-                      <option>Накладний платіж</option>
-                      <option>Безготівкова</option>
-                    </select>
-                  </div>
-                  <div class="delivery user-form-item">
-                    <div class="flex user-form-item">
-                      <label for="name">Коментар</label>
-                      <textarea
-                        id="comment"
-                        class="userComent"
-                        type="texarea"
-                        placeholder="Введіть коментар"
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
 
-                <button id="sendmessage" class="btn-finaly">
-                  Оформити замовлення
-                </button>
+                  <button id="sendmessage" class="btn-finaly">
+                    Оформити замовлення
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -594,6 +626,31 @@
       let postSlect = document.getElementById("select-div-post");
       let postFilter = document.getElementById("post-filter");
 
+      let deliveryInput = document.getElementById("delivety-input");
+      let deliveryFilter = document.getElementById("delivery-filter");
+      let deliveryDiv = document.getElementById("select-div-delivery");
+
+      let paysInput = document.getElementById("pays-input");
+      let paysFilter = document.getElementById("pays-filter");
+      let paysDiv = document.getElementById("select-div-pays");
+
+      deliveryDiv.addEventListener("click", (e) => {
+        deliveryFilter.classList.toggle("active");
+      });
+      deliveryFilter.addEventListener("click", (e) => {
+        deliveryFilter.classList.remove("active");
+        deliveryInput.value = e.target.innerHTML;
+      });
+
+      paysDiv.addEventListener("click", (e) => {
+        paysFilter.classList.toggle("active");
+      });
+      paysFilter.addEventListener("click", (e) => {
+        paysFilter.classList.remove("active");
+        console.log(e.target.innerHTML);
+        console.log(paysInput);
+        paysInput.innerHTML = e.target.innerHTML;
+      });
       postSlect.addEventListener("click", (e) => {
         postFilter.classList.toggle("active");
       });
@@ -617,6 +674,8 @@
         cityInput.value = e.target.innerHTML;
         // очистить почтоматі
         searchPosts(cityInput.name);
+        const blockBg = document.getElementById("second-form");
+        blockBg.classList.remove("disable-form-bg");
       });
 
       cityInput.addEventListener("input", (e) => {
