@@ -3,15 +3,16 @@ const TELEGRAM_CHAT_ID = "@spray_groupe";
 const APIMessage = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
 const sendMessageToTg = async (message, userData) => {
-  console.log(userData);
   let newMessage = [];
   message.forEach((item) => {
     const text = `
-        Назва товару: ${item.product_name},
+        Назва товару: 
+        ${item.product_name},
 
         Артикул: ${item.artical},
 
-        Кількість: ${item.product_count_to_buy}
+        Кількість: ${item.product_count_to_buy},
+        Ціна: ${item.price},
         ____________________
         `;
     newMessage.push(text);
@@ -33,8 +34,6 @@ const sendMessageToTg = async (message, userData) => {
 
       Почта: ${userData.email},
 
-      Область: ${userData.obl},
-
       Місто: ${userData.city},
 
       Спосіб доставки: ${userData.delivery},
@@ -46,7 +45,10 @@ const sendMessageToTg = async (message, userData) => {
       Коментар : ${userData.comment},
 
       Товари до замовлення:
-      ${newMessage}`,
+      ${newMessage}
+      Повна ціна : ${userData.totalPrice},
+      
+      `,
       }),
     });
     console.log(response);
