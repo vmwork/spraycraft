@@ -26,7 +26,6 @@ const reactiveUpdateFilter = () => {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
-  console.log(cartState);
   for (let i = 0; i < products.length; i++) {
     let div = document.createElement("div");
     let buttonImg = "/img/add-to-cart.png";
@@ -99,6 +98,8 @@ const getFilterTags = () => {
       }
     }
   });
+
+  // фильтровать только по модели.
   const filtredTTags = tags.filter(
     (it, index) => index === tags.indexOf((it = it.trim()))
   );
@@ -126,8 +127,9 @@ filter.addEventListener("click", (e) => {
     products = result?.documents;
   }
   if (e.target.innerText !== "Усі") {
+    const filterValue = e.target.innerText.split(" ").reverse()[0];
     products = result?.documents.filter((product) => {
-      return product.product_name.includes(e.target.value);
+      return product.product_name.includes(filterValue);
     });
   }
   filterPreviw.innerText = e.target.innerText;
