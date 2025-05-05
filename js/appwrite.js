@@ -66,15 +66,17 @@ const reactiveUpdateFilter = () => {
               }
             });
             let coincidence = false;
+            const id = "";
             cart.forEach((product, i) => {
               if (product.$id === productToCard.$id) {
                 cart[i] = productToCard;
+                id = i;
                 coincidence = true;
               }
             });
             if (cart.length === 0 || !coincidence) {
               let buttonInCard = document.getElementById(e.target.id);
-              buttonInCard.innerHTML = `<img class="img-button shake" id="${products[i].$id}" src=/img/cart-2.svg alt="" width="25" />`;
+              buttonInCard.innerHTML = `<img class="img-button shake" id="${id}" src=/img/cart-2.svg alt="" width="25" />`;
               message.classList.remove("hidden");
               setTimeout(() => {
                 message.classList.add("hidden");
