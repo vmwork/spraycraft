@@ -50,6 +50,7 @@ const reactiveUpdateFilter = () => {
     if (i === products.length - 1) {
       const buttons = document.querySelectorAll(".product-card-buttons");
       const message = document.getElementById("added-to-cart");
+      let productId = "";
       buttons.forEach((button) => {
         button.addEventListener("click", (e) => {
           const cart = getCartState();
@@ -63,20 +64,21 @@ const reactiveUpdateFilter = () => {
                   product.product_count_to_buy++;
                 }
                 productToCard = product;
+                productId = product.$id;
               }
             });
             let coincidence = false;
-            const id = "";
+
             cart.forEach((product, i) => {
               if (product.$id === productToCard.$id) {
                 cart[i] = productToCard;
-                id = i;
                 coincidence = true;
+                productId = product.$id;
               }
             });
             if (cart.length === 0 || !coincidence) {
               let buttonInCard = document.getElementById(e.target.id);
-              buttonInCard.innerHTML = `<img class="img-button shake" id="${id}" src=/img/cart-2.svg alt="" width="25" />`;
+              buttonInCard.innerHTML = `<img class="img-button shake" id="${productId}" src=/img/cart-2.svg alt="" width="25" />`;
               message.classList.remove("hidden");
               setTimeout(() => {
                 message.classList.add("hidden");
