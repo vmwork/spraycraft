@@ -187,13 +187,11 @@ function sendForm(form_id, res_div) {
       $(".modal").css("display", "flex");
       $(".modal-block").hide();
       $(".modal-thanks").css("display", "block");
-      console.log("success");
     },
     error: function (xhr, str) {
       $(".modal").css("display", "flex");
       $(".modal-block").hide();
       $(".modal-thanks").css("display", "block");
-      console.log("error");
     },
   });
   $(".input").val("");
