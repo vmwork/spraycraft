@@ -699,6 +699,9 @@
         postFilter.classList.toggle("active");
       });
       postSlect.addEventListener("input", (e) => {
+        if (!postFilter.classList.contains("active")) {
+          postFilter.classList.add("active");
+        }
         if (posts.some((post) => post.Description.includes(e.target.value))) {
           postsList.innerHTML = "";
           posts.forEach((post) => {
