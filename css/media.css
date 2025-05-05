@@ -163,9 +163,9 @@
   .title-other {
     font-size: 44px;
   }
-  .product-photo img {
+  /* .product-photo img {
     height: 100%;
-  }
+  } */
 }
 @media (max-width: 1230px) {
   .container {
