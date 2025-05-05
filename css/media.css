@@ -1082,12 +1082,12 @@
 }
 @media (max-width: 1148px) {
   .user-form-wrapper {
-    min-width: 375px;
+    /* min-width: 375px; */
   }
 }
 @media (max-width: 1148px) {
   .user-form-wrapper {
-    max-width: 400px;
+    /* max-width: 400px; */
     .user-form-item input,
     .user-form-item select,
     .user-form-item textarea {
@@ -1103,8 +1103,9 @@
 }
 @media (max-width: 955px) {
   .user-form-wrapper {
-    max-width: 456px;
+    /* max-width: 456px; */
     min-width: 375px;
+    width: 100%;
   }
   .user-form-item input,
   .user-form-item select,

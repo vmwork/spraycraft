@@ -57,7 +57,7 @@
   left: 0px;
   top: 75px;
   left: 10px;
-  margin-left: 20px;
+  margin-left: 30px;
   background-color: #fff !important;
   width: 100%;
 }
@@ -73,4 +73,9 @@
 }
 input:-internal-autofill-selected {
   background-color: #fff !important;
+}
+@media (max-width: 760px) {
+  .user-form-item .custom-filter-products .div-select {
+    margin-left: 20px;
+  }
 }
