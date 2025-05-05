@@ -28,9 +28,9 @@ const reactiveUpdateFilter = () => {
   }
   for (let i = 0; i < products.length; i++) {
     let div = document.createElement("div");
-    let buttonImg = "/img/add-to-cart.png";
+    let buttonImg = "/img/cart-1.svg";
     if (cartState.some((cart) => cart.$id === products[i].$id)) {
-      buttonImg = "/img/ok.webp";
+      buttonImg = "/img/cart-2.svg";
     }
     div.className = "product-card";
     div.innerHTML = `<img src="${products[i].url}" alt="copter" width="200" />
@@ -40,13 +40,16 @@ const reactiveUpdateFilter = () => {
                 <div class="product-card-price">
                   <p>${products[i].price} грн</p>
       
-                <button id="${products[i].$id}"  class="product-card-buttons">   <img class="img-button" id="${products[i].$id}" src="${buttonImg}" alt="" width="25" /> Купити</button>   
+                <button id="${products[i].$id}"  class="product-card-buttons">   <img class="img-button" id="${products[i].$id}" src="${buttonImg}" alt="" width="25" />
+                
+                </button>   
                 </div>`;
 
     element.append(div);
 
     if (i === products.length - 1) {
       const buttons = document.querySelectorAll(".product-card-buttons");
+      const message = document.getElementById("added-to-cart");
       buttons.forEach((button) => {
         button.addEventListener("click", (e) => {
           const cart = getCartState();
@@ -72,7 +75,11 @@ const reactiveUpdateFilter = () => {
             if (cart.length === 0 || !coincidence) {
               let buttonInCard = document.getElementById(e.target.id);
               buttonInCard.innerHTML =
-                '<img class="img-button shake" id="${products[i].$id}" src="/img/ok.webp" alt="" width="25" /> У кошику';
+                '<img class="img-button shake" id="${products[i].$id}" src=/img/cart-2.svg alt="" width="25" />';
+              message.classList.remove("hidden");
+              setTimeout(() => {
+                message.classList.add("hidden");
+              }, 1500);
               cart.push(productToCard);
             }
             setCartState(cart);
