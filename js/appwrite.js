@@ -22,11 +22,17 @@ let products = result?.documents;
 let element = document.getElementById("cards");
 
 const reactiveUpdateFilter = () => {
+  const cartState = getCartState();
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
+  console.log(cartState);
   for (let i = 0; i < products.length; i++) {
     let div = document.createElement("div");
+    let buttonImg = "/img/add-to-cart.png";
+    if (cartState.some((cart) => cart.$id === products[i].$id)) {
+      buttonImg = "/img/ok.webp";
+    }
     div.className = "product-card";
     div.innerHTML = `<img src="${products[i].url}" alt="copter" width="200" />
                 <p class="product-card-name">${products[i].product_name}</p> 
@@ -35,7 +41,7 @@ const reactiveUpdateFilter = () => {
                 <div class="product-card-price">
                   <p>${products[i].price} грн</p>
       
-                <button id="${products[i].$id}"  class="product-card-buttons">   <img class="img-button" id="${products[i].$id}" src="/img/add-to-cart.png" alt="" width="25" /> Купити</button>   
+                <button id="${products[i].$id}"  class="product-card-buttons">   <img class="img-button" id="${products[i].$id}" src="${buttonImg}" alt="" width="25" /> Купити</button>   
                 </div>`;
 
     element.append(div);
@@ -67,7 +73,7 @@ const reactiveUpdateFilter = () => {
             if (cart.length === 0 || !coincidence) {
               let buttonInCard = document.getElementById(e.target.id);
               buttonInCard.innerHTML =
-                '<img class="img-button" id="${products[i].$id}" src="/img/ok.webp" alt="" width="25" /> У кошику';
+                '<img class="img-button shake" id="${products[i].$id}" src="/img/ok.webp" alt="" width="25" /> У кошику';
               cart.push(productToCard);
             }
             setCartState(cart);
@@ -125,8 +131,6 @@ filter.addEventListener("click", (e) => {
     });
   }
   filterPreviw.innerText = e.target.innerText;
-  console.log(e.target.innerText);
-  console.log(filterPreviw);
   filter.classList.remove("active");
   reactiveUpdateFilter();
 });
