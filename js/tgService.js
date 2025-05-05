@@ -37,9 +37,6 @@ ${newMessage}
 Повна ціна : ${userData.totalPrice}`,
       }),
     });
-    console.log(response);
-    // if (response.ok) notifySuccess();
-    // if (!response.ok) notifyFlail();
   } catch (error) {
     console.error(error);
   }

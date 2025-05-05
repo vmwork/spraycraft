@@ -33,7 +33,7 @@ const reactiveUpdateFilter = () => {
       buttonImg = "/img/cart-2.svg";
     }
     div.className = "product-card";
-    div.innerHTML = `<img src="${products[i].url}" alt="copter" width="200" />
+    div.innerHTML = `<img src="${products[i].url}" alt="${products[i].img_alt}" width="200" />
                 <p class="product-card-name">${products[i].product_name}</p> 
                 <div class="product-card-artical"><p> Артикул : ${products[i].artical}</p></div>
                   
