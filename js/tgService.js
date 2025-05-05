@@ -50,8 +50,7 @@ const sendFormToTg = async (form_id) => {
   var msg = $("#" + form_id);
   const name = msg[0].name.value;
   const phone = msg[0].phone.value;
-  console.log(phone);
-  console.log(name);
+
   try {
     const response = await fetch(APIMessage2, {
       method: "POST",
@@ -77,3 +76,17 @@ const sendFormToTg = async (form_id) => {
     $(".modal-thanks").css("display", "block");
   }
 };
+const phone = document.querySelector(".phoneClass");
+const phone2 = document.querySelector(".phoneClass2");
+phone.addEventListener("focus", (_) => {
+  // Если там ничего нет или есть, но левое
+  if (!/^\+\d*$/.test(phone.value))
+    // То вставляем знак плюса как значение
+    phone.value = "+380";
+});
+phone2.addEventListener("focus", (_) => {
+  // Если там ничего нет или есть, но левое
+  if (!/^\+\d*$/.test(phone2.value))
+    // То вставляем знак плюса как значение
+    phone2.value = "+380";
+});
