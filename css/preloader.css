@@ -116,3 +116,7 @@
     stroke: #99c455;
   }
 }
+
+input {
+  box-sizing: border-box;
+}
