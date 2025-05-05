@@ -469,6 +469,7 @@
         </div>`;
       };
       const reactiveUpdateDom = () => {
+        console.log("vweretry");
         productsCard = document.getElementById("card-items");
         while (productsCard.firstChild) {
           productsCard.removeChild(productsCard.firstChild);
@@ -830,6 +831,9 @@
         if (getUserData()) {
           sendMessageToTg(cart, getUserData());
           openSenksModal();
+          localStorage.setItem("cart", JSON.stringify([]));
+          getCart();
+          reactiveUpdateDom();
         }
       });
 
