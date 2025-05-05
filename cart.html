@@ -294,7 +294,7 @@
                           <div class="div-select" id="select-div-post">
                             <input
                               id="post-input"
-                              placeholder="Для пошуку міста введіть перші літери"
+                              placeholder="Для пошуку відділення введіть ойго номер"
                               autocomplete="off"
                             />
                             <div>
@@ -627,9 +627,8 @@
         citySpiner.classList.add("hidden");
       };
       const postsList = document.getElementById("post-filter");
-
+      let posts = [];
       const searchPosts = async (data) => {
-        let posts = [];
         const citySpiner = document.getElementById("post-spiner");
         citySpiner.classList.remove("hidden");
         const searchOptions = {
@@ -698,6 +697,21 @@
       });
       postSlect.addEventListener("click", (e) => {
         postFilter.classList.toggle("active");
+      });
+      postSlect.addEventListener("input", (e) => {
+        if (posts.some((post) => post.Description.includes(e.target.value))) {
+          postsList.innerHTML = "";
+          posts.forEach((post) => {
+            if (post.Description.includes(e.target.value)) {
+              let option = document.createElement("div");
+              option.className = "filter-option";
+              option.innerHTML = post.Description;
+              postsList.append(option);
+            }
+          });
+        } else {
+          postsList.innerHTML = "";
+        }
       });
       filterDiv.addEventListener("click", (e) => {
         filter.classList.toggle("active");
