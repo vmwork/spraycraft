@@ -130,32 +130,9 @@
               <li><a href="/our-service.html">Сервіс</a></li>
               <li><a href="#contacts" class="go-to">Контакти</a></li>
             </ul>
-            <ul class="social-icons">
-              <li>
-                <a href="https://t.me/spray_craft" target="_blank"
-                  ><img src="img/social-icon-1.svg" alt="Alternate Text"
-                /></a>
-              </li>
-              <li>
-                <a href="#" target="_blank"
-                  ><img src="img/social-icon-2.svg" alt="Alternate Text"
-                /></a>
-              </li>
-              <li>
-                <a href="#" target="_blank"
-                  ><img src="img/social-icon-3.svg" alt="Alternate Text"
-                /></a>
-              </li>
-              <li>
-                <a href="#" target="_blank"
-                  ><img src="img/social-icon-4.svg" alt="Alternate Text"
-                /></a>
-              </li>
-              <li>
-                <a href="#" target="_blank"
-                  ><img src="img/social-icon-5.svg" alt="Alternate Text"
-                /></a>
-              </li>
+            <ul class="social-icons" id="social-links">
+              <!-- <li><a href="/">UA</a></li>
+              <li><a href="/ru">RU</a></li> -->
             </ul>
             <div class="menu-before"></div>
           </div>
@@ -397,33 +374,7 @@
               class="adress"
               >Чернігівська обл., с.Чемер</a
             >
-            <ul class="footer-social-list">
-              <li>
-                <a href="https://t.me/spray_craft" target="_blank"
-                  ><img src="img/social-footer-icon-1.png" alt="Alternate Text"
-                /></a>
-              </li>
-              <li>
-                <a href="#" target="_blank"
-                  ><img src="img/social-footer-icon-2.png" alt="Alternate Text"
-                /></a>
-              </li>
-              <li>
-                <a href="#" target="_blank"
-                  ><img src="img/social-footer-icon-3.png" alt="Alternate Text"
-                /></a>
-              </li>
-              <li>
-                <a href="#" target="_blank"
-                  ><img src="img/social-footer-icon-4.png" alt="Alternate Text"
-                /></a>
-              </li>
-              <li>
-                <a href="#" target="_blank"
-                  ><img src="img/social-footer-icon-5.png" alt="Alternate Text"
-                /></a>
-              </li>
-            </ul>
+            <ul class="footer-social-list" id="social-links-footer"></ul>
           </div>
         </div>
         <p class="footer-bottom">Spray Craft 2024 Всі права захищено</p>
@@ -439,13 +390,13 @@
     <script src="assets/animate/waypoints.min.js"></script>
     <script src="assets/animate/animate-css.js"></script>
 
-    <!-- build:js js/main.js -->
     <script src="js/JavaScript.js"></script>
-    <!-- <script src="js/appwrite.js"></script> -->
-    <script src="../https://cdn.jsdelivr.net/npm/appwrite@17.0.0"></script>
-    <script type="module" src="../js/appwriteSocial.js"></script>
     <script src="js/cartState.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@17.0.0"></script>
+
+    <script type="module" src="js/appwriteSocial.js"></script>
     <script src="js/tgService.js"></script>
+
     <script type="module">
       let productsCard = document.getElementById("card-items");
       let buttons = document.querySelectorAll(".product-card-button");
