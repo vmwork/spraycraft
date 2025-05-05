@@ -6,7 +6,7 @@ const TELEGRAM_BOT_TOKEN2 = "8081818358:AAFSOIbOsXK8HzWmJG69NITHYzKcsNn5XQE";
 const TELEGRAM_CHAT_ID2 = "@spray_groupe_bid";
 const APIMessage2 = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN2}/sendMessage`;
 
-const sendMessageToTg = async (message) => {
+const sendMessageToTg = async (message, userData) => {
   let newMessage = [];
   message.forEach((item) => {
     const text = `
