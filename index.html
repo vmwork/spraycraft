@@ -46,6 +46,8 @@
       gtag('config', 'AW-16511961963');
     </script>
 
+    <script> document.addEventListener('DOMContentLoaded', function () { var iframe = document.getElementById('BinomIframeId'); if (iframe) { iframe.addEventListener('load', function () { setTimeout(() => { iframe.contentWindow.postMessage( { pathname: window.location.pathname, search: window.location.search }, 'window.location.host' ); }, 500); }); } }); </script>
+
     <meta charset="utf-8" />
     <title>
       Обробка полів дронами, внесення ЗЗР і трихограми, десикація дронами
@@ -176,18 +178,7 @@
         </div>
       </div>
       <div>
-        <div style="display: flex; justify-content: center; gap: 20px">
-          <div style="height: 430px; width: 320px">
-            Стандарт
-            <iframe
-              width="100%"
-              height="100%"
-              allow="microphone *"
-              src="https://app.binomai.com/widgets/seller-chat/f81e8b78-28fa-4d8e-9d98-5b977b62e813?backgroundColor=172628&color=ffffff&backgroundColorMessage=283334&sendButtonIconColor=00A589&iframeBackgroundColor=fff"
-              style="border: none"
-            ></iframe>
-          </div>
-        </div>
+        <div style="display: flex; justify-content: center; gap: 20px"></div>
         <div
           style="
             display: flex;
@@ -196,20 +187,11 @@
             margin-top: 20px;
           "
         >
-          <div style="height: 430px; max-width: 420px">
-            <iframe
-              id="BinomIframeId"
-              width="100%"
-              height="100%"
-              allow="microphone *"
-              style="border: none"
-              src="https://app.binomai.com/widgets/seller-chat/f81e8b78-28fa-4d8e-9d98-5b977b62e813?backgroundColor=172628&color=ffffff&backgroundColorMessage=283334&sendButtonIconColor=00A589&iframeBackgroundColor=fff"
-            >
-            </iframe>
+        <div style="height: 700px; width: 600px"> <iframe width="100%" height="100%" allow="microphone *" src="https://dev-app.binomai.com/widgets/seller-chat/f81e8b78-28fa-4d8e-9d98-5b977b62e813?backgroundColor=1ebdd2&color=060101&backgroundColorMessage=f8feff&sendButtonIconColor=0a0b0b&iframeBackgroundColor=650707" style="border:none;"></iframe> </div>
           </div>
+          
         </div>
       </div>
-
       <section class="banner">
         <div class="container">
           <h1>
