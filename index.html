@@ -46,7 +46,24 @@
       gtag('config', 'AW-16511961963');
     </script>
 
-    <script> document.addEventListener('DOMContentLoaded', function () { var iframe = document.getElementById('BinomIframeId'); if (iframe) { iframe.addEventListener('load', function () { setTimeout(() => { iframe.contentWindow.postMessage( { pathname: window.location.pathname, search: window.location.search }, 'window.location.host' ); }, 500); }); } }); </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var iframe = document.getElementById('BinomIframeId');
+        if (iframe) {
+          iframe.addEventListener('load', function () {
+            setTimeout(() => {
+              iframe.contentWindow.postMessage(
+                {
+                  pathname: window.location.pathname,
+                  search: window.location.search,
+                },
+                'window.location.host'
+              );
+            }, 500);
+          });
+        }
+      });
+    </script>
 
     <meta charset="utf-8" />
     <title>
@@ -187,9 +204,16 @@
             margin-top: 20px;
           "
         >
-        <div style="height: 700px; width: 600px"> <iframe width="100%" height="100%" allow="microphone *" src="https://dev-app.binomai.com/widgets/seller-chat/f81e8b78-28fa-4d8e-9d98-5b977b62e813?backgroundColor=1ebdd2&color=060101&backgroundColorMessage=f8feff&sendButtonIconColor=0a0b0b&iframeBackgroundColor=650707" style="border:none;"></iframe> </div>
+          <div style="height: 430px; width: 320px">
+            <iframe
+              width="100%"
+              height="100%"
+              allow="microphone *"
+              src="https://dev-app.binomai.com/widgets/seller-chat/f81e8b78-28fa-4d8e-9d98-5b977b62e813?backgroundColor=33b6c8&color=000000&backgroundColorMessage=d0d7d7&sendButtonIconColor=07ffd6&iframeBackgroundColor=003fff&inputColor=0a00fa
+          )}&sendButtonIconColor=07ffd6&iframeBackgroundColor=003fff"
+              style="border: none"
+            ></iframe>
           </div>
-          
         </div>
       </div>
       <section class="banner">
