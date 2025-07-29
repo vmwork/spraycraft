@@ -45,7 +45,7 @@
 
       gtag('config', 'AW-16511961963');
     </script>
-
+    <!-- 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         var iframe = document.getElementById('BinomIframeId');
@@ -63,7 +63,7 @@
           });
         }
       });
-    </script>
+    </script> -->
 
     <meta charset="utf-8" />
     <title>
@@ -196,24 +196,28 @@
       </div>
       <div>
         <div style="display: flex; justify-content: center; gap: 20px"></div>
-        <div
-          style="
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-          "
-        >
-          <div style="height: 430px; width: 320px">
+        <div style="">
+          Script
+          <div id="binomIframe"></div>
+          <!-- <div style="height: 800px; width: 500px">
             <iframe
               width="100%"
               height="100%"
               allow="microphone *"
-              src="https://dev-app.binomai.com/widgets/seller-chat/f81e8b78-28fa-4d8e-9d98-5b977b62e813?backgroundColor=33b6c8&color=000000&backgroundColorMessage=d0d7d7&sendButtonIconColor=07ffd6&iframeBackgroundColor=003fff&inputColor=0a00fa
-          )}&sendButtonIconColor=07ffd6&iframeBackgroundColor=003fff"
+              src="http://localhost:3000/widgets/seller-chat/f81e8b78-28fa-4d8e-9d98-5b977b62e813?backgroundColor=422bae&color=e28e8e&backgroundColorMessage=3d0606&sendButtonIconColor=333a91&iframeBackgroundColor=5bab6f&inputColor=490404&sendButtonIconColor=333a91&iframeBackgroundColor=5bab6f&chatGap=8&borderRadius=10&chatPadding=10"
               style="border: none"
             ></iframe>
-          </div>
+          </div> -->
+        </div>
+        Iframe
+        <div style="height: 430px; width: 320px">
+          <iframe
+            width="100%"
+            height="100%"
+            allow="microphone *"
+            src="http://localhost:3000/widgets/seller-chat/467c8efc-4587-4697-ae53-b3371017192e?backgroundColor=172628&color=ffffff&backgroundColorMessage=145157&sendButtonIconColor=00A589&iframeBackgroundColor=fff&inputColor=ffffff&sendButtonIconColor=00A589&iframeBackgroundColor=fff&chatGap=8&borderRadius=10&chatPadding=10"
+            style="border: none"
+          ></iframe>
         </div>
       </div>
       <section class="banner">
@@ -868,5 +872,11 @@
 
     <script type="module" src="js/appwriteSocial.js"></script>
     <script src="js/tgService.js"></script>
+    <div id="binomIframe"></div>
+    <script
+      data-id="b77271b9-a7ed-4416-8dc2-bdd8f58b0d12"
+      data-host="http://localhost:3000"
+      src="http://localhost:3000/js/iframe.js"
+    ></script>
   </body>
 </html>
