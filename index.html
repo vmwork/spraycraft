@@ -45,25 +45,7 @@
 
       gtag('config', 'AW-16511961963');
     </script>
-    <!-- 
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var iframe = document.getElementById('BinomIframeId');
-        if (iframe) {
-          iframe.addEventListener('load', function () {
-            setTimeout(() => {
-              iframe.contentWindow.postMessage(
-                {
-                  pathname: window.location.pathname,
-                  search: window.location.search,
-                },
-                'window.location.host'
-              );
-            }, 500);
-          });
-        }
-      });
-    </script> -->
+
 
     <meta charset="utf-8" />
     <title>
@@ -198,7 +180,7 @@
         <div style="display: flex; justify-content: center; gap: 20px"></div>
         <div style="">
           IFRAME
-        <!-- <div id="binomIframe"></div> -->
+        <div id="binomIframe"></div>
       </div>
       <section class="banner">
         <div class="container">
@@ -853,16 +835,17 @@
     <script type="module" src="js/appwriteSocial.js"></script>
     <script src="js/tgService.js"></script>
 
-    <!-- < <script
+    < <script
       data-id="b77271b9-a7ed-4416-8dc2-bdd8f58b0d12"
-      data-host="https://dev-app.binomai.com/"
-      src="https://dev-app.binomai.com/"
-    ></script>   -->
+      data-host="http://localhost:3000/"
+      src="http://localhost:3000/js/iframe.js"
+    ></script>  
  
     <script
       data-id="8c8953ae-0713-4a49-b01b-da200826fac7"
       data-host="https://dev-app.binomai.com/"
       src="https://dev-app.binomai.com/js/binomHelper.js"
     ></script>
+
   </body>
 </html>
